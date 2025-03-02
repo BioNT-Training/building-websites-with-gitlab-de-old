@@ -1,57 +1,59 @@
 ---
-title: "Introduction"
+title: Einführung
 teaching: 0
 exercises: 0
 questions:
-- "What is static web content?"
-- "Why should I use GitHub or GitLab Pages to create my website?"
+- What is static web content?
+- Why should I use GitHub or GitLab Pages to create my website?
 objectives:
-- "Explain what a static site generator does."
-- "Choose the appropriate tool for your website/project."
+- Explain what a static site generator does.
+- Choose the appropriate tool for your website/project.
 keypoints:
-- "A static site generator combines page-specific content with layout elements and styling information to construct individual webpages."
-- "GitHub/GitLab Pages is a good choice for people who are already familiar with Git and GitHub/GitLab."
-- "This approach can be used to create a relatively small website/blog on a limited budget."
+- A static site generator combines page-specific content with layout elements and
+  styling information to construct individual webpages.
+- GitHub/GitLab Pages is a good choice for people who are already familiar with Git
+  and GitHub/GitLab.
+- This approach can be used to create a relatively small website/blog on a limited
+  budget.
 ---
 
-## How Websites Work
 
-When we use a web browser to visit a page on the World-Wide Web,
-the browser asks for information from a server -
-a computer storing the data relevant to the site and configured to receive and respond to requests for that data.
-Assuming there were no problems at this stage
-(e.g. asking for a page which doesn't exist, or being unable to reach the server),
-our browser receives and interprets this information
-to render and display the webpage on our screen.
+## Wie Websites funktionieren
 
-A web developer would probably be horrified to read such a gross oversimplification,
-which is just one reason why
-web developers are not the target audience of this tutorial.
+Wenn wir einen Webbrowser verwenden, um eine Seite im World-Wide-Web zu besuchen,
+fordert der Browser Informationen von einem Server an - einem Computer, der die für die
+Website relevanten Daten speichert und so konfiguriert ist, dass er Anfragen nach diesen
+Daten empfängt und beantwortet. Unter der Annahme, dass es in dieser Phase keine
+Probleme gab (z. B. die Anfrage nach einer Seite, die nicht existiert, oder die
+Unmöglichkeit, den Server zu erreichen), empfängt und interpretiert unser Browser diese
+Informationen, um die Webseite auf unserem Bildschirm darzustellen.
 
-The page displayed by the web browser is the result of combining
-**HTML** - a hierarchical format describing the structural elements of the page and their raw content - with
-**CSS** - an ordered set of styling instructions telling the browser how the content should be organised and formatted -
-and any **images** that should be embedded in the page.
-Other information received from the server,
-but not displayed by the browser,
-includes **metadata**, **cookies**, and other non-visible elements in the HTML -
-information about the site that could be relevant for a computer
-but probably isn't interesting to a human
-(there are [exceptions][qwantz-easter-egg-ext] to this) -
-and scripts that the browser may run to do something
-in response to various triggers.
+Ein Webentwickler wäre wahrscheinlich entsetzt, wenn er eine solch grobe Vereinfachung
+lesen würde, was nur ein Grund dafür ist, dass Webentwickler nicht die Zielgruppe dieses
+Lehrgangs sind.
 
-## Hello World in HTML
+Die vom Webbrowser angezeigte Seite ist das Ergebnis der Kombination von **HTML** -
+einem hierarchischen Format, das die Strukturelemente der Seite und ihren Rohinhalt
+beschreibt - mit **CSS** - einem geordneten Satz von Styling-Anweisungen, die dem
+Browser mitteilen, wie der Inhalt organisiert und formatiert werden soll - und allen
+**Bildern**, die in die Seite eingebettet werden sollen. Andere Informationen, die vom
+Server empfangen, aber vom Browser nicht angezeigt werden, umfassen **Metadaten**,
+**Cookies** und andere nicht sichtbare Elemente im HTML - Informationen über die
+Website, die für einen Computer relevant sein könnten, aber wahrscheinlich für einen
+Menschen nicht interessant sind (es gibt [Ausnahmen][qwantz-easter-egg-ext] dazu) - und
+Skripte, die der Browser als Reaktion auf verschiedene Auslöser ausführen kann.
 
-When learning a new programming language,
-you may often find a reference to the popular `Hello world` example.
-These examples typically capture the simplest code that
-can produce and display the text "Hello, World!" on screen.
+## Hallo Welt in HTML
 
-As HTML requires certain tags to be present and almost always in matching pairs (open `<tag>` and closing `</tag>`),
-HTML documents tend to get verbose rather quickly.
+Wenn Sie eine neue Programmiersprache lernen, finden Sie oft einen Verweis auf das
+beliebte `Hello world`-Beispiel. Diese Beispiele erfassen typischerweise den einfachsten
+Code, der den Text "Hello, World!" erzeugen und auf dem Bildschirm anzeigen kann.
 
-The simplest, valid HTML `Hello world` is:
+Da HTML das Vorhandensein bestimmter Tags voraussetzt und diese fast immer in
+übereinstimmenden Paaren vorkommen müssen (öffnendes `<tag>` und schließendes `</tag>`),
+neigen HTML-Dokumente dazu, ziemlich schnell langatmig zu werden.
+
+Das einfachste, gültige HTML `Hello world` ist:
 
 ~~~
 <!DOCTYPE html>
@@ -64,54 +66,71 @@ The simplest, valid HTML `Hello world` is:
   </body>
 </html>
 ~~~
+> 
 {: .language-html }
 
-So as you can imagine, writing long HTML documents by hand is rather painful.
-Notice that we didn't specify anything about how and where the text should be displayed.
+Wie Sie sich vorstellen können, ist es ziemlich mühsam, lange HTML-Dokumente von Hand zu
+schreiben. Beachten Sie, dass wir keine Angaben darüber gemacht haben, wie und wo der
+Text angezeigt werden soll.
 
-To achieve this we would additionally need to include stylized tags or Cascading Style Sheets (CSS) instructions.
-If you do not provide CSS instructions (either inside your HTML document or as a separate file),
-a web browser will make a best guess regarding the layout of HTML elements on the page based on its defaults.
+Um dies zu erreichen, müssten wir zusätzlich stilisierte Tags oder Cascading Style
+Sheets (CSS)-Anweisungen einfügen. Wenn Sie keine CSS-Anweisungen bereitstellen
+(entweder innerhalb Ihres HTML-Dokuments oder als separate Datei), wird ein Webbrowser
+das Layout der HTML-Elemente auf der Seite auf der Grundlage seiner
+Standardeinstellungen nach bestem Wissen und Gewissen festlegen.
 
-> ## The Many Tags in HTML
->
-> In the `Hello world` example above 5 different tags are used (`html`, `head`, `title`, `body` and `p`) in their open `<>` and closed `</>` form.
-> We see also the special `doctype` tag that indicates the format and version of the document, in this case, [HTML(5)][html5-wikipedia].
->
-> Many other tags exist to define:
-> - *structural elements*, such as `table`, `div`, `span`, `nav`, `section`;
-> - *lists*, such as `ul` (for unordered lists) and `or` (for ordered lists);
-> - *stylized elements*, such as `i`/`em` (for *italics/emphasis*), `b`/`strong` (for **bold**) and `u` (for <u>underlined text</u>);
-> - *headings*, numbered from `h1` to `h6` for titles and progressively smaller sub-titles;
-> - *media elements*, such as `img`, `video`, `audio` to embed rich media content; and
-> - *links*, using the important `a` (anchor) tag to link to sections in the same page or other pages within the same or external websites.
->
-> The [list of valid HTML tags][html5-tags] is rather extensive,
-> covering a rich range of features powering today's world wide web.
+> ## Die vielen Tags in HTML
+> 
+> In dem obigen Beispiel `Hello world` werden 5 verschiedene Tags verwendet (`html`,
+> `head`, `title`, `body` und `p`) in ihrer offenen `<>` und geschlossenen `</>` Form.
+> Wir sehen auch den speziellen `doctype`-Tag, der das Format und die Version des
+> Dokuments angibt, in diesem Fall, [HTML(5)][html5-wikipedia].
+> 
+> Es gibt viele weitere Tags zur Definition:
+> - *strukturelle Elemente*, wie `table`, `div`, `span`, `nav`, `section`;
+> - *Listen*, wie `ul` (für ungeordnete Listen) und `or` (für geordnete Listen);
+> - *stilisierte Elemente*, wie z.B. `i`/`em` (für *Kursivschrift/Hervorhebungen*),
+>   `b`/`strong` (für **fett**) und `u` (für <u>unterstrichenen Text</u>);
+> - *Überschriften*, nummeriert von `h1` bis `h6` für Überschriften und zunehmend
+>   kleinere Unterüberschriften;
+> - *Medienelemente*, wie `img`, `video`, `audio` zum Einbetten von Rich-Media-Inhalten;
+>   und
+> - *Links*, wobei das wichtige `a` (Anker)-Tag verwendet wird, um auf Abschnitte auf
+>   derselben Seite oder auf andere Seiten innerhalb derselben oder externer Websites zu
+>   verweisen.
+> 
+> Die [Liste der gültigen HTML-Tags][html5-tags] ist ziemlich umfangreich und deckt eine
+> Vielzahl von Funktionen ab, die das heutige World Wide Web ausmachen.
+> 
 {: .callout }
 
-> ## Exercise: Writing Basic HTML
->
-> Given the stylized text:
->
+> ## Übung: Grundlegendes HTML schreiben
+> 
+> Gegeben sei der stilisierte Text:
+> 
 > <h1><em>Hello</em>, World!</h1>
->
-> write the HTML that will produce the same result.
-> **Hint** the big font is achieved by use of a heading.
->
-> > ## Solution
-> >
+> 
+> Schreiben Sie den HTML-Code, der das gleiche Ergebnis liefert. **Tipp** Die große
+> Schrift wird durch die Verwendung einer Überschrift erreicht.
+> 
+> > ## Lösung
+> > 
 > > ~~~
 > > <h1><em>Hello</em>, World!</h1>
 > > ~~~
 > > {: .language-html }
+> > 
 > {: .solution }
+> 
 {: .challenge }
 
-Let's write a more complex HTML example using a table showing the "Hello, World!" text in different languages that renders like:
-![HTML table example](../fig/html-table.png){: .image-with-shadow width="600px" }
+Schreiben wir ein komplexeres HTML-Beispiel mit einer Tabelle, die den "Hello,
+World!"-Text in verschiedenen Sprachen zeigt und wie folgt gerendert wird ![HTML
+Tabellenbeispiel](../fig/html-table.png){: .image-with-shadow width="600px" }
 
-The HTML to produce such a table looks like this (you can copy+paste the snippet into the HTML file you created in the previous example):
+Der HTML-Code für eine solche Tabelle sieht folgendermaßen aus (Sie können den
+Ausschnitt in die HTML-Datei kopieren und einfügen, die Sie im vorherigen Beispiel
+erstellt haben):
 ~~~
 <table>
     <tr><th>Language</th><th>Text</th></tr>
@@ -121,13 +140,17 @@ The HTML to produce such a table looks like this (you can copy+paste the snippet
     <tr><td>Serbian</td><td>Zdravo, svete!</td></tr>
 </table>
 ~~~
+> 
 {: .language-html }
 
-Each row is enclosed between **t**able **r**ow `<tr>` and `</tr>` tags. Within a row, `<th>` and `</th>` tags are used to contain **t**able **h**eadings
-(special table cells displayed in bold font), while regular **t**able **d**ata cells are contained within `<td>` and `</td>` tags.
+Jede Zeile ist zwischen den Tags **t**able **r**ow `<tr>` und `</tr>` eingeschlossen.
+Innerhalb einer Zeile werden die Tags `<th>` und `</th>` verwendet, um **t**able
+**h**eadings (spezielle Tabellenzellen, die in fetter Schrift dargestellt werden) zu
+enthalten, während normale **t**able **d**ata-Zellen in den Tags `<td>` und `</td>`
+enthalten sind.
 
-A similar example written using HTML lists would look as follows:
-![HTML list example](../fig/html-list.png){: .image-with-shadow width="600px" }
+Ein ähnliches Beispiel, das mit HTML-Listen geschrieben wurde, würde wie folgt aussehen:
+![HTML-Listenbeispiel](../fig/html-list.png){: .image-with-shadow width="600px" }
 
 ~~~
 <ul>
@@ -137,192 +160,246 @@ A similar example written using HTML lists would look as follows:
     <li>Serbian: Zdravo, svete!</li>
 </ul>
 ~~~
+> 
 {: .language-html }
 
-Here, we used **u**nordered **l**ist tags `<ul>` and `</ul>` to define a list with 4 items, each in turn wrapped in
-individual **l**ist **i**tem (`<li>` and `</li>`) tags.
+Hier haben wir die **u**nordered **l**ist-Tags `<ul>` und `</ul>` verwendet, um eine
+Liste mit 4 Elementen zu definieren, die wiederum in einzelne **l**ist **i**tem (`<li>`
+und `</li>`) Tags verpackt sind.
 
-## Static vs Dynamic Sites
+## Statische vs. dynamische Sites
 
-_Static_ pages are those whose contents are stored on a server in a state ready
-to be sent to any user who makes a request for that web page. When a request is
-made, the server only needs to send the information comprising that web page
-(such as HTML and CSS). Sites that do not change often, such as a website
-containing one’s CV, are often stored as static sites.
+_Statische_ Seiten sind Seiten, deren Inhalt auf einem Server gespeichert ist und an
+jeden Benutzer gesendet werden kann, der eine Anfrage für diese Webseite stellt. Bei
+einer Anfrage braucht der Server nur die Informationen zu senden, aus denen die Webseite
+besteht (wie HTML und CSS). Websites, die sich nicht oft ändern, wie z. B. eine Website
+mit dem eigenen Lebenslauf, werden oft als statische Websites gespeichert.
 
-Conversely, _dynamic_
-sites are those that have their pages generated when a user makes a request for
-a web page. Depending on when the request is made, the content might change; for
-example, clicking refresh when viewing a discussion in a web forum might result
-in new comments showing up. The key difference is that static pages need only be
-generated once, after which they rest unchanged on the server, compared to
-dynamic pages which are regenerated by a server every time it receives a
-request.
+Im Gegensatz dazu sind _dynamische_ Sites solche, deren Seiten generiert werden, wenn
+ein Benutzer eine Anfrage für eine Webseite stellt. Je nachdem, wann die Anfrage
+gestellt wird, kann sich der Inhalt ändern; wenn man zum Beispiel bei einer Diskussion
+in einem Webforum auf Aktualisieren klickt, können neue Kommentare erscheinen. Der
+Hauptunterschied besteht darin, dass statische Seiten nur einmal generiert werden müssen
+und danach unverändert auf dem Server verbleiben, im Gegensatz zu dynamischen Seiten,
+die von einem Server jedes Mal neu generiert werden, wenn er eine Anfrage erhält.
 
-> ## Examples in the Life Sciences field
->
-> A typical example of _static_ website in the Life Science field would be the documentation
-> of a tool or a file format, such as this page at [wwpdb.org](https://www.wwpdb.org/documentation/file-format).
->
-> Entry pages of the [PDB database](https://www.rcsb.org/), instead, differently load content on the
-> basis of the visualisation tools and options chosen by the user. A database or a webserver is usually
-> a _dynamic_ website.
->
+> ## Beispiele aus dem Bereich der Biowissenschaften
+> 
+> Ein typisches Beispiel für eine _statische_ Website im Bereich der Biowissenschaften
+> wäre die Dokumentation eines Werkzeugs oder eines Dateiformats, wie diese Seite auf
+> [wwpdb.org](https://www.wwpdb.org/documentation/file-format).
+> 
+> Die Einstiegsseiten der [PDB-Datenbank] (https://www.rcsb.org/) laden den Inhalt auf
+> der Grundlage der vom Benutzer gewählten Visualisierungswerkzeuge und -optionen
+> unterschiedlich. Eine Datenbank oder ein Webserver ist normalerweise eine _dynamische_
+> Website.
+> 
 {: .callout}
 
-This lesson focuses on static sites and tools that can be used to
-create them, known as **Static Site Generators**.
+Diese Lektion konzentriert sich auf statische Websites und Tools, die zu ihrer
+Erstellung verwendet werden können, die sogenannten **Static Site Generators**.
 
-One of the advantages of using static site generators is that
-they remove the need for us to manually produce a lot of HTML,
-allowing us to focus on the human-readable content we want our pages to contain.
-However, we still need a way to tell the generator how we want our content
-to look when it's displayed in the browser.
-For that, we will use a tool called Markdown, which we'll learn about in a following episode.
+Einer der Vorteile des Einsatzes von Generatoren für statische Seiten ist, dass sie uns
+die manuelle Erstellung einer Menge HTML ersparen, so dass wir uns auf den für Menschen
+lesbaren Inhalt unserer Seiten konzentrieren können. Allerdings müssen wir dem Generator
+noch mitteilen, wie unsere Inhalte aussehen sollen, wenn sie im Browser angezeigt
+werden. Dazu verwenden wir ein Werkzeug namens Markdown, das wir in einer der nächsten
+Folgen kennenlernen werden.
 
-![Pages can be created in several ways: static server-side generation (where HTML is generated once on the server and doesn't
-change thereafter), dynamic server-side generation (where the server can update and send new HTML based on requests from
-the user's browser), and client-side generation (where parts of HTML pages are generated by the browser using Javascript code)](../fig/page-generation-js4ds.svg)
+![Seiten können auf verschiedene Arten erstellt werden: statische serverseitige
+Generierung (bei der HTML einmal auf dem Server generiert wird und sich danach nicht
+mehr ändert), dynamische serverseitige Generierung (bei der der Server neues HTML auf
+der Grundlage von Anfragen des Benutzerbrowsers aktualisieren und senden kann) und
+clientseitige Generierung (bei der Teile der HTML-Seiten vom Browser mithilfe von
+Javascript-Code generiert werden)](../fig/page-generation-js4ds.svg)
 
-_Figure 1.1: Page Generation Alternatives. This figure is a modified version of the original published in [JavaScript for Data Science][js4ds], and is reproduced here with permission from the author._
+_Abbildung 1.1: Alternativen der Seitenerstellung. Diese Abbildung ist eine modifizierte
+Version des Originals, das in [JavaScript for Data Science][js4ds] veröffentlicht wurde,
+und wird hier mit Genehmigung des Autors wiedergegeben._
 
-Static-generated sites are a great choice when the information you want to
-display on a website is the same regardless of who visits your site
-and when,
-and if the content of your pages is unlikely to need to change very often.
-This makes Static Site Generators a good choice for sites that provide
-documentation or lesson content like this page:
-the aim of the page is to deliver the same information to every visitor.
-The visitor can arrive,
-(hopefully) find and read what they need,
-and leave feeling happy and fulfilled.
+Statische Websites sind eine gute Wahl, wenn die Informationen, die Sie auf einer
+Website anzeigen möchten, immer gleich sind, unabhängig davon, wer Ihre Website besucht
+und wann, und wenn sich der Inhalt Ihrer Seiten wahrscheinlich nicht sehr oft ändern
+muss. Daher sind statische Seitengeneratoren eine gute Wahl für Websites, die
+Dokumentationen oder Lehrinhalte wie diese Seite bereitstellen: Das Ziel der Seite ist
+es, jedem Besucher dieselben Informationen zu liefern. Der Besucher kommt an, findet und
+liest (hoffentlich), was er braucht, und verlässt die Seite mit einem zufriedenen und
+erfüllten Gefühl.
 
-Dynamic sites provide a lot more possibilities for providing interactivity and
-personalised or topical content.
-But creating them is a degree more complicated
-and also places considerable additional burden on the server,
-not least in terms of computational requirements and security considerations.
-Among other things this means that,
-unlike with static pages (see the rest of this lesson),
-you're unlikely to find cost-free platforms to help you deliver dynamic content.
+Dynamische Seiten bieten viel mehr Möglichkeiten zur Bereitstellung von Interaktivität
+und personalisierten oder aktuellen Inhalten. Ihre Erstellung ist jedoch um einiges
+komplizierter und stellt auch eine erhebliche zusätzliche Belastung für den Server dar,
+nicht zuletzt im Hinblick auf die Rechenanforderungen und Sicherheitsaspekte. Dies
+bedeutet unter anderem, dass Sie im Gegensatz zu statischen Seiten (siehe den Rest
+dieser Lektion) kaum kostenlose Plattformen finden werden, die Ihnen bei der
+Bereitstellung dynamischer Inhalte helfen.
 
-> ## Exercise: The Perfect Tool for the Job
->
-> Given the following types of websites,
-> reason if a static site generator is an appropriate solution to implement them.
->
-> - (1) A personal website with *About* and *Projects* sections
-> - (2) A forum or discussion platform
-> - (3) A community blog or news website
-> - (4) A search engine (such as google.com)
-> - (5) A wiki (such as wikipedia.com)
-> - (6) An online book
->
-> > ## Solution
-> >
-> > - (1) **personal website**: In most cases, **Yes**. This kind of content is typically written/edited by one person and meant to have a read-only access to visitors.
-> > - (2) **forum or discussion**: Most likely **No**. Such website requires interactivity and ways to identify who wrote what content.
-> >
-> > For questions 3 and 5 the answer is both **Yes** and **No** depending on the requirements and necessary functionality.
-> >
-> > - (3) **blog/news**: A simple blog or news website, maintained by a small set of users, is perfectly achievable by using a static generator. For very large groups of content creators or if access to articles needs to be controlled individually, using a static generator will lead to difficult technical challenges.
-> > - (4) **search engine**: Most often **No**. Implementing something as sophisticated as Google's search would be close to impossible with a static generator. There are ways to have a simple engine that searches across all pages produced by a static generator using indexing and making clever use of browser features but this approach has many limitations.
-> > - (5) **wiki**: A simple wiki is perfectly doable with a static generator (e.g. [GitHub Wiki Pages](https://guides.github.com/features/wikis/)), however it becomes limiting as soon as its content needs to be edited or discussed by many users, as is the case of Wikipedia.
-> > - (6) **online book**: Definitely **Yes**. Static generators are perfect for this type of website. They typically provide ways to avoid repeating content (variables and templates), automatic creation of a *Table Of Contents*, among other goodies.
-> >
+> ## Übung: Das perfekte Werkzeug für den Job
+> 
+> Begründen Sie anhand der folgenden Website-Typen, ob ein statischer Website-Generator
+> eine geeignete Lösung für ihre Umsetzung ist.
+> 
+> - (1) Eine persönliche Website mit den Abschnitten *Über* und *Projekte*
+> - (2) Ein Forum oder eine Diskussionsplattform
+> - (3) Ein Gemeinschaftsblog oder eine Nachrichten-Website
+> - (4) Eine Suchmaschine (wie google.com)
+> - (5) Ein Wiki (wie z.B. wikipedia.com)
+> - (6) Ein Online-Buch
+> 
+> > ## Lösung
+> > 
+> > - (1) **persönliche Website**: In den meisten Fällen, **Ja**. Diese Art von Inhalt
+> >   wird typischerweise von einer Person geschrieben/bearbeitet und ist für Besucher
+> >   nur zum Lesen gedacht.
+> > - (2) **Forum oder Diskussion**: Höchstwahrscheinlich **Nein**. Eine solche Website
+> >   erfordert Interaktivität und Möglichkeiten, um festzustellen, wer welchen Inhalt
+> >   geschrieben hat.
+> > 
+> > Für die Fragen 3 und 5 lautet die Antwort sowohl **Ja** als auch **Nein**, abhängig
+> > von den Anforderungen und der benötigten Funktionalität.
+> > 
+> > - (3) **blog/news**: Ein einfaches Blog oder eine News-Website, die von einer
+> >   kleinen Gruppe von Nutzern gepflegt wird, ist mit einem statischen Generator
+> >   durchaus realisierbar. Für sehr große Gruppen von Inhaltserstellern oder wenn der
+> >   Zugang zu Artikeln individuell gesteuert werden muss, führt die Verwendung eines
+> >   statischen Generators zu schwierigen technischen Herausforderungen.
+> > - (4) **Suchmaschine**: Meistens **Nein**. Etwas so ausgeklügeltes wie die
+> >   Google-Suche zu implementieren, wäre mit einem statischen Generator nahezu
+> >   unmöglich. Es gibt zwar Möglichkeiten, eine einfache Suchmaschine zu entwickeln,
+> >   die alle von einem statischen Generator erzeugten Seiten durchsucht, indem sie
+> >   Indizierungen vornimmt und die Funktionen des Browsers geschickt nutzt, aber
+> >   dieser Ansatz hat viele Einschränkungen.
+> > - (5) **wiki**: Ein einfaches Wiki ist mit einem statischen Generator (z.B. [GitHub
+> >   Wiki Pages](https://guides.github.com/features/wikis/)) durchaus machbar, wird
+> >   aber zu einer Einschränkung, sobald der Inhalt von vielen Benutzern bearbeitet
+> >   oder diskutiert werden muss, wie es bei Wikipedia der Fall ist.
+> > - (6) **Online-Buch**: Auf jeden Fall **Ja**. Statische Generatoren sind perfekt für
+> >   diese Art von Website. Sie bieten typischerweise Möglichkeiten, um die
+> >   Wiederholung von Inhalten zu vermeiden (Variablen und Vorlagen), automatische
+> >   Erstellung eines *Inhaltsverzeichnisses*, neben anderen Vorteilen.
+> > 
 > {: .solution }
+> 
 {: .challenge }
 
-## GitLab Pages
+## GitLab-Seiten
 
-If the site you want to create is a good match to the strengths of a static site generator -
-it's relatively __small__, will be __updated infrequently__, and the __content does not need to be personalised to the visitor__ -
-then creating it with GitLab Pages is a good option.
-GitLab Pages is a system allowing users to create and serve websites directly from their GitLab repositories.
-The service is free for public repositories and simple pages can be created and served with very little configuration required.
+Wenn die Website, die Sie erstellen möchten, gut zu den Stärken eines statischen
+Website-Generators passt - sie ist relativ __klein__, wird __nur selten__ aktualisiert
+und der __Inhalt muss nicht auf den Besucher zugeschnitten sein__ - dann ist die
+Erstellung mit GitLab Pages eine gute Option. GitLab Pages ist ein System, mit dem
+Benutzer Websites direkt aus ihren GitLab-Repositories erstellen und bereitstellen
+können. Der Service ist für öffentliche Repositories kostenlos und einfache Seiten
+können mit sehr wenig Konfigurationsaufwand erstellt und bereitgestellt werden.
 
-We will go through a list of templates, of increasing complexity. While the first will be based on plain Markdown,
-the more advanced ones will be based on multiple technologies (an example is shown in the diagram below).
-It may sound overwhelming at first but we will explain most of these technologies in this lesson -
-we only don't cover CSS/Sass (styling language that gets compiled into CSS) and
-JavaScript/CoffeeScript (scripting language that gets compiled into JavaScript) in detail.
+Wir werden eine Liste von Vorlagen mit steigender Komplexität durchgehen. Während die
+ersten auf einfachem Markdown basieren, werden die fortgeschritteneren auf mehreren
+Technologien beruhen (ein Beispiel ist im folgenden Diagramm dargestellt). Es mag
+zunächst überwältigend klingen, aber wir werden die meisten dieser Technologien in
+dieser Lektion erklären - wir gehen nur nicht im Detail auf CSS/Sass (Stylingsprache,
+die in CSS kompiliert wird) und JavaScript/CoffeeScript (Skriptsprache, die in
+JavaScript kompiliert wird) ein.
 
-![Static websites in GitHub Pages technology overview diagram](../fig/jekyll-gh-pages-website-overview.svg){: width="700px" }
+![Statische Websites im GitHub Pages
+Technologieübersichtsdiagramm](../fig/jekyll-gh-pages-website-overview.svg){:
+width="700px" }
 
-First, we are going to set up a project to store our files and learn more about how to author and format the content
-of our pages using HTML and Markdown, before configuring GitLab to display this content as a website using GitLab Pages.
+Zunächst werden wir ein Projekt zum Speichern unserer Dateien einrichten und mehr
+darüber erfahren, wie wir den Inhalt unserer Seiten mit HTML und Markdown verfassen und
+formatieren, bevor wir GitLab so konfigurieren, dass dieser Inhalt mit GitLab Pages als
+Website angezeigt wird.
 
-## Setting Up a Project
+## Einrichten eines Projekts
 
-Before we get into working we must first create a project to work in.
-This project is similar to a folder on your computer, the main differences
-being that the folder lives on the web in GitLab/GitHub (though you can
-also keep a copy on your computer if needed) and that folder is using
-a version control software called [`git`](https://git-scm.com/) to track changes to the files.
-For our purposes we will mostly be ignoring the version control software,
-though it can be handy if you need to revert to old versions
-(see [Software Carpentry - Version Control with Git](https://swcarpentry.github.io/git-novice/) for an introduction).
-In this lesson we will be working with this folder on the web to control
-the website we will be creating.
+Bevor wir mit der Arbeit beginnen, müssen wir zunächst ein Projekt erstellen, in dem wir
+arbeiten können. Dieses Projekt ist vergleichbar mit einem Ordner auf Ihrem Computer,
+wobei der Hauptunterschied darin besteht, dass der Ordner im Web in GitLab/GitHub liegt
+(obwohl Sie bei Bedarf auch eine Kopie auf Ihrem Computer behalten können) und dieser
+Ordner eine Versionskontrollsoftware namens [`git`](https://git-scm.com/) verwendet, um
+Änderungen an den Dateien zu verfolgen. Für unsere Zwecke werden wir die
+Versionskontrollsoftware größtenteils ignorieren, obwohl sie nützlich sein kann, wenn
+Sie zu alten Versionen zurückkehren müssen (siehe [Software Carpentry -
+Versionskontrolle mit Git](https://swcarpentry.github.io/git-novice/) für eine
+Einführung). In dieser Lektion werden wir mit diesem Ordner im Web arbeiten, um die
+Website zu kontrollieren, die wir erstellen werden.
 
-> ## Login into your GitLab account
-> Before you can create a repo, you will need to login in the
-> [EMBL GitLab](https://git.embl.de/)
+> ## Melden Sie sich bei Ihrem GitLab-Konto an
+> Bevor Sie ein Repo erstellen können, müssen Sie sich im [EMBL
+> GitLab](https://git.embl.de/)
+> 
 {: .callout}
 
-There are two ways of creating a new project:
+Es gibt zwei Möglichkeiten, ein neues Projekt zu erstellen:
 
-Click the "+" button in the navbar on top and choose "new project"
+Klicken Sie auf die Schaltfläche "+" in der oberen Navigationsleiste und wählen Sie
+"Neues Projekt"
 
 ![Plus button](../fig/gitlab-new-navbar.png){: .image-with-shadow width="600px" }
 
-**or**, if you are on the projects page, click the "New project" button
+**oder**, wenn Sie sich auf der Projektseite befinden, klicken Sie auf die Schaltfläche
+"Neues Projekt"
 
-![New project button](../fig/gitlab-new-project.png){: .image-with-shadow width="600px" }
+![Schaltfläche Neues Projekt](../fig/gitlab-new-project.png){: .image-with-shadow
+width="600px" }
 
-You will be redirected to a page that provides three options:
-1. Create blank project
-1. Create from template
-1. Import project
-Take your time to read the descriptions of the different cases. Please select "Create blank project".
+Sie werden zu einer Seite weitergeleitet, die drei Optionen bietet:
+1. Ein leeres Projekt erstellen
+1. Aus Vorlage erstellen
+1. Projekt importieren Nehmen Sie sich Zeit, um die Beschreibungen der verschiedenen
+   Fälle zu lesen. Bitte wählen Sie "Leeres Projekt erstellen".
 
-Next you will need to fill in some info about your project.
+Als nächstes müssen Sie einige Angaben zu Ihrem Projekt machen.
 
-![Blank new repository page](../fig/gitlab_blank_new_repo.png){: .image-with-shadow width="600px" }
+![Blank new repository page](../fig/gitlab_blank_new_repo.png){: .image-with-shadow
+width="600px" }
 
-In this lesson, we will be working on a general group website.
-You can imagine this website may be for your lab group, a specific project group, or another group you work with.
-Under the "Project name" field, type `group-website`.
+In dieser Lektion werden wir an einer allgemeinen Gruppen-Website arbeiten. Sie können
+sich vorstellen, dass diese Website für Ihre Laborgruppe, eine bestimmte Projektgruppe
+oder eine andere Gruppe, mit der Sie zusammenarbeiten, bestimmt ist. Geben Sie in das
+Feld "Projektname" `group-website` ein.
 
-The `Project slug` will determine the URL to access your project and website, it is automatically generated when you fill
-the `Project name` field. Leave it as is.
+Die `Project slug` bestimmt die URL für den Zugriff auf Ihr Projekt und Ihre Website.
+Sie wird automatisch generiert, wenn Sie das Feld `Project name` ausfüllen. Lassen Sie
+es so wie es ist.
 
-Have a look at the dropdown menu next in the `Project URL` field. The default option is your own user, this refers to
-your own namespace. Other namespaces might be available, depending on which groups you belong to. For example, if this is
-planned to be your group website, it may be a good choice to select your group namespace to host it. This both to provide
-easy access to the project to other group members and to have your group name (and not your user name) in the website URL.
-However, we will initialise this test projects in our own namespace.
+Werfen Sie einen Blick auf das Dropdown-Menü neben dem Feld `Project URL`. Die
+Standardoption ist Ihr eigener Benutzer, dies bezieht sich auf Ihren eigenen Namensraum.
+Je nachdem, zu welchen Gruppen Sie gehören, können auch andere Namensräume verfügbar
+sein. Wenn dies zum Beispiel Ihre Gruppen-Website sein soll, ist es vielleicht eine gute
+Wahl, Ihren Gruppennamensraum zu wählen, um sie zu hosten. So können andere
+Gruppenmitglieder leicht auf das Projekt zugreifen und Ihr Gruppenname (und nicht Ihr
+Benutzername) wird in der URL der Website angezeigt. Wir werden dieses Testprojekt
+jedoch in unserem eigenen Namespace initialisieren.
 
-We can also add a description (for instance "Project for learning how to make websites with GitLab pages") so we know
-what this project is when we find it again after the workshop.
+Wir können auch eine Beschreibung hinzufügen (z. B. "Projekt zum Erlernen der Erstellung
+von Websites mit GitLab-Seiten"), damit wir wissen, worum es sich bei diesem Projekt
+handelt, wenn wir es nach dem Workshop wiederfinden.
 
-We will also check the `Initialize repository with a README` option. It is good practice to have a README file that
-gives more information about your repo.
+Wir werden auch die Option `Initialize repository with a README` überprüfen. Es ist eine
+gute Praxis, eine README-Datei zu haben, die mehr Informationen über Ihr Repository
+enthält.
 
 > ## GitLab vs GitHub
->
-> Most of the steps here described are very similar in GitHub. What GitLab calls "Project", in GitHub is a "Repository",
-> so if your instructor confuses the two terms here is why. In addition, the "Groups" are in GitLab "organisations".
->
-> More relevant are the differences regarding the visibility level and setup options. In GitHub, only two options are
-> available for a repository: "Public" or "Private". The EMBL GitLab allows a more specific fine tuning of the permissions
-> through the option "Internal", i.e. accessible only by logged in user. Finally, while GitLab only allows to initialize
-> the repository with a README, GitHub includes the option to initialise it with a .gitignore and license files too.
+> 
+> Die meisten der hier beschriebenen Schritte sind in GitHub sehr ähnlich. Was in GitLab
+> als "Projekt" bezeichnet wird, ist in GitHub ein "Repository"; falls Ihr Ausbilder die
+> beiden Begriffe verwechselt, finden Sie hier den Grund. Darüber hinaus sind die
+> "Gruppen" in GitLab "Organisationen".
+> 
+> Wichtiger sind die Unterschiede in Bezug auf die Sichtbarkeitsebene und die
+> Einrichtungsoptionen. In GitHub gibt es nur zwei Optionen für ein Repository:
+> "Öffentlich" oder "Privat". Das EMBL GitLab erlaubt eine spezifischere Feinabstimmung
+> der Berechtigungen durch die Option "Intern", d.h. nur für angemeldete Benutzer
+> zugänglich. Während GitLab nur die Möglichkeit bietet, das Repository mit einer README
+> zu initialisieren, bietet GitHub die Option, es auch mit einer .gitignore und
+> Lizenzdateien zu initialisieren.
+> 
 {: .callout}
 
-Once you've finished these steps you can click the `Create Project` button. GitLab will then setup the repo and it
-should create the repo called `group-website` with a `README.md` file in it. What the graphical interface just helped us
-doing, is basically the following steps:
+Sobald Sie diese Schritte abgeschlossen haben, können Sie auf die Schaltfläche `Create
+Project` klicken. GitLab richtet dann das Projektarchiv ein und erstellt ein
+Projektarchiv mit dem Namen `group-website` und einer `README.md`-Datei darin. Die
+grafische Oberfläche hat uns bei den folgenden Schritten geholfen:
 
 ~~~
 mkdir group-website
@@ -332,21 +409,29 @@ cat > README.md
 git add README.md
 git commit -m "Initial commit"
 ~~~
+> 
 {: .language-bash }
 
-On a remote server. The default branch is `main`.
+Auf einem entfernten Server. Die Standardverzweigung ist `main`.
 
-![Github repository for the group website](../fig/gitlab_group_website_project.png){: .image-with-shadow width="800px" }
+![Github-Repository für die Gruppenwebsite](../fig/gitlab_group_website_project.png){:
+.image-with-shadow width="800px" }
 
-Before moving on to the next chapter, have a look at the buttons on top, such as `Add LICENSE`, `Add CHANGELOG` etc.,
-suggesting you possible next steps. To name one, the License is definitely something you might want to include in your
-project. We will not be looking into this in detail, but please consider that licensing is a good practice (if not a
-necessary one) for any project that includes data or software. Your website, even if a very simple and static one, will
-include some sort of *data*, even just people names. The technologies and templates you will use to generate it are
-*software*. A word to the wise.
+Bevor Sie zum nächsten Kapitel übergehen, sollten Sie einen Blick auf die Schaltflächen
+am oberen Rand werfen, wie z.B. `Add LICENSE`, `Add CHANGELOG` usw., die Ihnen mögliche
+nächste Schritte vorschlagen. Zum Beispiel ist die Lizenz etwas, das Sie auf jeden Fall
+in Ihr Projekt aufnehmen sollten. Wir werden nicht im Detail darauf eingehen, aber
+bedenken Sie bitte, dass die Lizenzierung eine gute Praxis (wenn nicht sogar eine
+notwendige) für jedes Projekt ist, das Daten oder Software enthält. Ihre Website, selbst
+wenn es sich um eine sehr einfache und statische Website handelt, wird irgendeine Art
+von *Daten* enthalten, selbst wenn es sich nur um Personennamen handelt. Die
+Technologien und Vorlagen, die Sie zur Erstellung der Website verwenden, sind
+*Software*. Ein Wort der Weisheit.
 
-[qwantz-easter-egg-ext]: https://chrome.google.com/webstore/detail/dinosaur-comics-easter-eg/bojkkeeefjmeogpgnlomodfkkfkfhabj
+[qwantz-easter-egg-ext]:
+https://chrome.google.com/webstore/detail/dinosaur-comics-easter-eg/bojkkeeefjmeogpgnlomodfkkfkfhabj
 [js4ds]: http://js4ds.org
 [html5-tags]: https://www.w3schools.com/TAGS/default.asp
 
 {% include links.md %}
+

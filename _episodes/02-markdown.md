@@ -1,91 +1,106 @@
 ---
-title: "Authoring With Markdown"
+title: Verfassen mit Markdown
 teaching: 0
 exercises: 0
 questions:
-- "How can I write content for my webpages?"
-- "How do I link to other pages?"
+- How can I write content for my webpages?
+- How do I link to other pages?
 objectives:
-- "create simple pages of formatted text"
+- create simple pages of formatted text
 keypoints:
-- "Markdown is an relatively easy way to write formatted text"
-- "Markdown and HTML tags can be used together in a single page"
-- "I recommend writing Markdown links 'reference-style'"
-- "The landing page for a website is conventionally named `index.md`"
+- Markdown is an relatively easy way to write formatted text
+- Markdown and HTML tags can be used together in a single page
+- I recommend writing Markdown links 'reference-style'
+- The landing page for a website is conventionally named `index.md`
 ---
 
+
 # Markdown
-Markdown is a lightweight markup language, i.e. a convention for adding
-style information to textual content.
-As the name Markdown indicates, the syntax elements of this language
-are shut *down* to a minimum.
-Having a rather minimalistic syntax, text formatted in Markdown is comparably
-readable.
-This might be one reason for Markdown having become the language of choice
-for formatted user input on websites like, for example:
+Markdown ist eine leichtgewichtige Auszeichnungssprache, d.h. eine Konvention zum
+Hinzufügen von Stilinformationen zu Textinhalten. Wie der Name Markdown schon sagt, sind
+die Syntaxelemente dieser Sprache auf ein Minimum reduziert. Mit einer eher
+minimalistischen Syntax ist in Markdown formatierter Text vergleichsweise gut lesbar.
+Dies mag ein Grund dafür sein, dass Markdown die Sprache der Wahl für formatierte
+Benutzereingaben auf Websites wie z. B.:
 - [Stack Exchange](https://stackexchange.com/)
 - [GitLab](https://about.gitlab.com/)
 - [GitHub](https://github.com/).
 
-
 # Where to Start Writing Markdown?
-A lot of tools for rendering Markdown source code exist.
-Rendering is the process of generating a nice view of the content
-using the style information included in the source text.
-Chances are high, your editor can do this.
-As we are working towards authoring websites using GitLab pages,
-we will use GitLab straight away for learning the basics of Markdown.
-The GitLab project you created in the last episode contains a file `README.md`.
-Click on the file name to access it.
+Es gibt eine Vielzahl von Tools zum Rendern von Markdown-Quellcode. Rendering ist der
+Prozess der Erzeugung einer schönen Ansicht des Inhalts unter Verwendung der im
+Quelltext enthaltenen Stilinformationen. Die Chancen stehen gut, dass Ihr Editor dies
+kann. Da wir auf die Erstellung von Websites mit GitLab-Seiten hinarbeiten, werden wir
+GitLab gleich zum Erlernen der Grundlagen von Markdown verwenden. Das GitLab-Projekt,
+das Sie in der letzten Folge erstellt haben, enthält eine Datei `README.md`. Klicken Sie
+auf den Dateinamen, um sie zu öffnen.
 
-The image below shows the default view.
-This view includes a rendered view of the content inside the file `README.md`, like the one in our project homepage.
+Das Bild unten zeigt die Standardansicht. Diese Ansicht enthält eine gerenderte Ansicht
+des Inhalts der Datei `README.md`, wie die auf unserer Projekthomepage.
 
 ![README preview](../fig/gitlab_readme.png){: .image-with-shadow width="900px" }
 
-The buttons on the right allow you to interact with the file and visualisation. The first couple of buttons,
-the ones with the icons, allow you to switch between `Display source` and `Display rendered file`. Over with the mouse
-on them to display these two messages in tooltips. The source is the non rendered view of our file. We can edit it
-through the blue `Edit` button. Click it.
+Mit den Schaltflächen auf der rechten Seite können Sie mit der Datei und der
+Visualisierung interagieren. Mit den ersten beiden Schaltflächen, den Schaltflächen mit
+den Symbolen, können Sie zwischen `Display source` und `Display rendered file`
+umschalten. Fahren Sie mit der Maus darauf, um diese beiden Meldungen in Tooltips
+anzuzeigen. Die Quelle ist die nicht gerenderte Ansicht unserer Datei. Wir können sie
+über die blaue Schaltfläche `Edit` bearbeiten. Klicken Sie ihn an.
 
-![Editing interface of the group websites README file](../fig/gitlab_edit_readme.png){: .image-with-shadow width="900px" }
+![Bearbeitungsoberfläche der Gruppen-Websites
+README-Datei](../fig/gitlab_edit_readme.png){: .image-with-shadow width="900px" }
 
-We can change the content and have a look at the rendered view by clicking the `Preview` tab on top.
+Wir können den Inhalt ändern und einen Blick auf die gerenderte Ansicht werfen, indem
+wir oben auf den Reiter `Preview` klicken.
 
-![Preview of the rendered content of the group websites README file](../fig/gitlab_edit_readme_preview.png){: .image-with-shadow width="900px" }
+![Vorschau auf den gerenderten Inhalt der README-Datei der
+Gruppen-Websites](../fig/gitlab_edit_readme_preview.png){: .image-with-shadow
+width="900px" }
 
-Let's add `Some **bold** font` and see what happens when we preview it using the preview tab. What happened to the world bold?
+Fügen wir `Some **bold** font` hinzu und sehen wir uns an, was passiert, wenn wir die
+Vorschau auf der Registerkarte Vorschau verwenden. Was ist mit der fetten Welt passiert?
 
-To save the content to the file `README.md`, we should click the `Commit changes` button at the bottom of the page.
-Please notice: this is not a simple "Save" button, but an actual commit. This version of the project will be stored in
-git with the `Commit message` that you will specify in the commit menu here and in the branch you settle as `Target branch`.
-We only have the main branch for the moment - so that choice is obvious - and the commit message is precompiled with the
-name of the file you just edited. You may want to be more specific in your commit message, but for the moment let's go
-with the default option provided. Commit this change.
+Um den Inhalt in der Datei `README.md` zu speichern, sollten wir auf die Schaltfläche
+`Commit changes` am unteren Ende der Seite klicken. Bitte beachten Sie, dass es sich
+hierbei nicht um eine einfache Schaltfläche "Speichern" handelt, sondern um eine
+tatsächliche Übertragung. Diese Version des Projekts wird in Git unter dem Namen `Commit
+message` gespeichert, den Sie hier im Commit-Menü angeben, und in dem Zweig, den Sie als
+`Target branch` festlegen. Wir haben im Moment nur den Hauptzweig - also ist diese Wahl
+offensichtlich - und die Commit-Nachricht wird mit dem Namen der Datei, die Sie gerade
+bearbeitet haben, vorkompiliert. Vielleicht möchten Sie in Ihrer Commit-Nachricht
+genauer sein, aber für den Moment nehmen wir die vorgegebene Option. Übertragen Sie
+diese Änderung.
 
-> ## Writing a Commit Message
->
-> A commit message is a short, descriptive, and specific comment that will help us remember later on what we did and why.
-> You find more about writing commit message in [this section](https://swcarpentry.github.io/git-novice/04-changes/index.html) of the Git-novice lesson.
->
+> ## Schreiben einer Commit-Nachricht
+> 
+> Eine Commit-Nachricht ist ein kurzer, beschreibender und spezifischer Kommentar, der
+> uns später helfen wird, uns daran zu erinnern, was wir getan haben und warum. Mehr
+> über das Schreiben von Commit-Nachrichten finden Sie in [diesem
+> Abschnitt](https://swcarpentry.github.io/git-novice/04-changes/index.html) der
+> Git-novice Lektion.
+> 
 {: .callout}
 
-![After commiting README changes](../fig/gitlab_readme_committed.png){: .image-with-shadow width="900px" }
+![Nach dem Übertragen von README-Änderungen](../fig/gitlab_readme_committed.png){:
+.image-with-shadow width="900px" }
 
-The interface redirects you to the main project page. On the top, a message says "Your changes have been successfully
-committed." Our changes were included in the README file, that now shows the second line with the bold font.
+Die Schnittstelle leitet Sie auf die Hauptseite des Projekts um. Oben steht eine
+Meldung: "Ihre Änderungen wurden erfolgreich übertragen." Unsere Änderungen wurden in
+die README-Datei aufgenommen, die nun die zweite Zeile mit der fetten Schrift zeigt.
 
-# Writing Markdown
+# Markdown schreiben
 
-Now that we know about the editing interface and preview tab of our projects `README.md`
-we can use it as a text editor and investigate selected Markdown features.
+Nachdem wir nun die Bearbeitungsoberfläche und die Vorschauregisterkarte unseres
+Projekts `README.md` kennen, können wir es als Texteditor verwenden und ausgewählte
+Markdown-Funktionen untersuchen.
 
-Our `README.md` already contains text and two formatting features:
-- Heading `# group-website`
-- Emphasis using `**bold**`.
+Unser `README.md` enthält bereits Text und zwei Formatierungsfunktionen:
+- Überschrift `# group-website`
+- Hervorhebung durch `**bold**`.
 
-Let's learn some more Markdown by adding some formatting and see what happens when we preview it using the preview tab.
-Add the following to your `README.md` file.
+Lassen Sie uns etwas mehr Markdown lernen, indem wir einige Formatierungen hinzufügen
+und sehen, was passiert, wenn wir die Vorschau auf der Registerkarte "Vorschau"
+verwenden. Fügen Sie das Folgende zu Ihrer `README.md` Datei hinzu.
 
 ~~~
 # group-website
@@ -106,110 +121,137 @@ are caused by two trailing spaces at the end of a line.
 - Data Carpentry
 - Library Carpentry
 ~~~
+> 
 {: .language-markdown }
 
-You can then click the preview tab again to see how the formatting renders.
+Sie können dann erneut auf die Registerkarte "Vorschau" klicken, um zu sehen, wie die
+Formatierung wiedergegeben wird.
 
-![Preview of the formatting added to the README](../fig/gitlab_learning_markdown.png){: .image-with-shadow width="900px" }
+![Vorschau auf die Formatierung in der README](../fig/gitlab_learning_markdown.png){:
+.image-with-shadow width="900px" }
 
 > ## Markdown Trailing Spaces Are Meaningful
->
-> In the example above there are two spaces at the end of `Line breaks  `.
-> These introduce what is called a **hard line break**, causing that paragraph to
-> continue in the next line by adding a `<br/>` to the generated HTML.
->
-> If you break the line in a markdown file but don't include the two trailing spaces
-> the generated HTML will continue in the same line **without** introducing a `<br/>`.
-> This is called a **soft line break**.
->
-> In some cases you may find that **soft line breaks** do introduce a `<br/>`.
-> This can happen when using different [markdown flavors](#markdown-flavours).
-> {: .language-markdown }
->
+> 
+> In dem obigen Beispiel gibt es zwei Leerzeichen am Ende von `Line breaks `. Diese
+> leiten einen sogenannten **harten Zeilenumbruch** ein, der bewirkt, dass der Absatz in
+> der nächsten Zeile fortgesetzt wird, indem dem generierten HTML ein `<br/>`
+> hinzugefügt wird.
+> 
+> Wenn Sie die Zeile in einer Markdown-Datei umbrechen, aber die beiden Leerzeichen am
+> Ende nicht einfügen, wird der generierte HTML-Code in der gleichen Zeile fortgesetzt,
+> **ohne** ein `<br/>` einzufügen. Dies wird **weicher Zeilenumbruch** genannt.
+> 
+> In einigen Fällen kann es vorkommen, dass **weiche Zeilenumbrüche** ein `<br/>`
+> einführen. Dies kann passieren, wenn Sie verschiedene [markdown
+> flavors](#markdown-flavours) verwenden. {: .language-markdown }
+> 
 {: .callout}
 
-You can commit these changes to save them. But first, let's do an exercise to try out writing more markdown.
+Sie können diese Änderungen übertragen, um sie zu speichern. Aber zuerst machen wir eine
+Übung, um das Schreiben von mehr Markdown auszuprobieren.
 
-> ## Exercise: Try Out Markdown
-> Use [this cheatsheet][gitlab-flavored-markdown] to add the following to your `README.md`:
->
-> - Another second level heading
-> - Some text under that second level heading that includes an link and ~~strikethrough~~ text.
-> - A third level heading
-> - A numbered list
-> - Bonus: Add this image <https://github.com/carpentries/carpentries.org/blob/main/images/TheCarpentries-opengraph.png>
->
-> > ## Example Solution
-> > For example your markdown might look like the following:
+> ## Übung: Ausprobieren von Markdown
+> Verwenden Sie [dieses Cheatsheet][gitlab-flavored-markdown], um das Folgende zu Ihrem
+> `README.md` hinzuzufügen:
+> 
+> - Eine weitere Überschrift der zweiten Ebene
+> - Etwas Text unter dieser Überschrift der zweiten Ebene, der einen Link und
+>   ~~durchgestrichenen~~ Text enthält.
+> - Eine Überschrift der dritten Ebene
+> - Eine nummerierte Liste
+> - Bonus: Dieses Bild hinzufügen
+>   <https://github.com/carpentries/carpentries.org/blob/main/images/TheCarpentries-opengraph.png>
+> 
+> > ## Beispiellösung
+> > Ihr Markdown könnte zum Beispiel wie folgt aussehen:
 > > ~~~
 > > ## More info on the lesson
 > > You can find this lesson [here](https://grp-bio-it-workshops.embl-community.io/building-websites-with-gitlab/).
-> >
+> > 
 > > ### Four reasons you should learn Markdown:
-> >
+> > 
 > > 1. Less formatting than HTML
 > > 2. Easy to read even with formatting
 > > 3. Commonly used for websites and software development
 > > 4. We ~~don't~~ use it in The Carpentries
-> >
+> > 
 > > ![Carpentries Logo](https://github.com/carpentries/carpentries.org/raw/main/images/TheCarpentries-opengraph.png)
 > > ~~~
 > > {: .language-markdown }
-> >
+> > 
+> > 
+> > 
 > {: .solution }
+> 
 {: .challenge }
 
 
-> ## Reference-Style Links
->
-> Up to now, we have used _inline-style_ links which have the URL inline with the description text, for example:
->
+> ## Referenz-Stil Links
+> 
+> Bisher haben wir _inline-style_ Links verwendet, bei denen die URL inline mit dem
+> Beschreibungstext steht, zum Beispiel:
+> 
 > ~~~
 > [Carpentries Webpage](https://carpentries.org/)
 > ~~~
 > {: .language-markdown }
->
-> If you use a link more than once, consider using so called _reference-style_ links instead.
-> Reference-style links reference the URL via a label.
-> The label goes into square brackets `[ ]` right after the description text of the link and
-> then later, usually at the bottom of the page, you can connect that label to the url it references to complete the link.
-> This looks like:
+> 
+> Wenn Sie einen Link mehr als einmal verwenden, sollten Sie stattdessen so genannte
+> _reference-style_ Links verwenden. Links im Verweis-Stil verweisen auf die URL über
+> ein Label. Das Label wird in eckige Klammern `[ ]` direkt nach dem Beschreibungstext
+> des Links gesetzt und später, normalerweise am Ende der Seite, können Sie dieses Label
+> mit der URL verbinden, auf die es verweist, um den Link zu vervollständigen. Das sieht
+> dann so aus:
 > ~~~
 > [Carpentries Webpage][carpentries]
->
+> 
 > [carpentries]: https://carpentries.org/
 > ~~~
 > {: .language-markdown }
->
+> 
 {: .callout}
 
-We will continue to use Markdown and learn more throughout the rest of the lesson. Whether you decide to structure your
-website through Markdown-based technologies or HTML, you will still need to know some basics of Markdown to edit your
-README file. The README file will provide an essential guide - shown in the landing page of your project - for your
-collaborators and also for you to understand what the project is about and how to contribute.
+Im weiteren Verlauf der Lektion werden wir Markdown verwenden und mehr darüber lernen.
+Unabhängig davon, ob Sie sich dafür entscheiden, Ihre Website mit Markdown-basierten
+Technologien oder mit HTML zu strukturieren, müssen Sie dennoch einige Grundlagen von
+Markdown beherrschen, um Ihre README-Datei zu bearbeiten. Die README-Datei ist ein
+wichtiger Leitfaden - der auf der Startseite Ihres Projekts angezeigt wird - für Ihre
+Mitarbeiter und auch für Sie, um zu verstehen, worum es in dem Projekt geht und wie Sie
+dazu beitragen können.
 
 > ## Markdown Flavours
->The initial description of Markdown was informal and contained certain ambiguities so over the years [different Markdown
->implementations and syntax variations](https://github.com/commonmark/commonmark-spec/wiki/markdown-flavors) (often referred to as "flavours")
->appeared to support various syntax features and extensions. As a consequence, the syntax from one variant may not
->be interpreted as expected in another - you have to be aware which one is being used by a particular platform. Here are
->a few well-known variants:
->   - [GitLab-flavored Markdown][gitlab-flavored-markdown] (used on this lesson and by GitLab)
->   - [GitHub-flavored Markdown][github-flavored-markdown] (used by GitHub)
->   - [Kramdown][kramdown] (a fast, Ruby, open source implementation released under the MIT licence)
->
-> Mardown is also the language of the collaborative notes platform available at EMBL. You can acces it
-> [here](https://pad.bio-it.embl.de/). The platform is based on [CodiMD](https://github.com/hackmdio/codimd).
+> Die anfängliche Beschreibung von Markdown war informell und enthielt gewisse
+> Unklarheiten, so dass im Laufe der Jahre [verschiedene Markdown-Implementierungen und
+> Syntax-Variationen](https://github.com/commonmark/commonmark-spec/wiki/markdown-flavors)
+> (oft als "Flavours" bezeichnet) erschienen, um verschiedene Syntax-Merkmale und
+> Erweiterungen zu unterstützen. Dies hat zur Folge, dass die Syntax einer Variante in
+> einer anderen möglicherweise nicht wie erwartet interpretiert wird - man muss sich
+> also bewusst sein, welche Variante von einer bestimmten Plattform verwendet wird. Hier
+> sind ein paar bekannte Varianten:
+>   - [GitLab-flavored Markdown][gitlab-flavored-markdown] (verwendet in dieser Lektion
+>     und von GitLab)
+>   - [GitHub-flavored Markdown][github-flavored-markdown] (von GitHub verwendet)
+>   - [Kramdown][kramdown] (eine schnelle, Ruby, Open-Source-Implementierung, die unter
+>     der MIT-Lizenz veröffentlicht wurde)
+> 
+> Mardown ist auch die Sprache der Plattform für kollaborative Notizen, die am EMBL
+> verfügbar ist. Sie können darauf [hier] zugreifen (https://pad.bio-it.embl.de/). Die
+> Plattform basiert auf [CodiMD](https://github.com/hackmdio/codimd).
+> 
 {: .callout}
 
-> ## Exercise: Add Your Repository Details to CodiMD
->
-> Use Markdown syntax to add a link in the collaborative notes document you are using to follow along with this lesson.
-> The link text should be your GitLab username, and the target your repository.
+> ## Übung: Fügen Sie Ihre Repository-Details zu CodiMD hinzu
+> 
+> Verwenden Sie die Markdown-Syntax, um einen Link in das Dokument mit den gemeinsamen
+> Notizen einzufügen, das Sie verwenden, um dieser Lektion zu folgen. Der Linktext
+> sollte Ihr GitLab-Benutzername und das Ziel Ihr Repository sein.
+> 
 {: .challenge }
 
 [kramdown]: https://kramdown.gettalong.org/
 [gitlab-flavored-markdown]: https://docs.gitlab.com/ee/user/markdown.html
-[github-flavored-markdown]: https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+[github-flavored-markdown]:
+https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 
 {% include links.md %}
+

@@ -1,53 +1,63 @@
 ---
-title: "GitLab Pages with Jupyter books"
+title: GitLab-Seiten mit Jupyter-Büchern
 teaching: 0
 exercises: 0
 questions:
-- "How do I publish web pages through GitLab and Jupyter books?"
+- How do I publish web pages through GitLab and Jupyter books?
 objectives:
-- "Publish Jupyter notebooks as HTML on the web with GitHub Pages"
+- Publish Jupyter notebooks as HTML on the web with GitHub Pages
 keypoints:
-- "Through Jupyter books, you'll be able to integrate interactive components and code in your web pages"
+- Through Jupyter books, you'll be able to integrate interactive components and code
+  in your web pages
 ---
 
-Let's do something different, that will sound a little more familiar if you are used to the
-[Jupyter](https://jupyter.org/) projects. From their website:
-> Project Jupyter exists to develop open-source software, open-standards, and services for interactive computing across
-> dozens of programming languages.
 
-**Jupyter notebooks** allow you to create and share documents containing live code as well as narrative text.
-**Jupyter Lab** expand their functionalities by creating and interactive development environment (allowing you to
-navigate your file system and define the coding environment). **Jupyter Hub** is a multi-user version of Jupyer Lab
-that institutions can implement locally ([as we at EMBL did](https://jupyterhub.embl.de/)).
+Lassen Sie uns etwas anderes machen, das ein wenig vertrauter klingt, wenn Sie mit den
+[Jupyter](https://jupyter.org/) Projekten vertraut sind. Von deren Website:
+> Das Projekt Jupyter dient der Entwicklung von Open-Source-Software, offenen Standards
+> und Diensten für interaktives Rechnen in Dutzenden von Programmiersprachen.
 
-And **Jupyer book**?
-> Jupyter Book is an open source project for building beautiful, publication-quality books and documents from
-> computational material.
+**Jupyter-Notizbücher** ermöglichen es Ihnen, Dokumente zu erstellen und auszutauschen,
+die sowohl Live-Code als auch erzählenden Text enthalten. **Jupyter Lab** erweitert ihre
+Funktionalitäten durch die Schaffung einer interaktiven Entwicklungsumgebung (die es
+Ihnen ermöglicht, in Ihrem Dateisystem zu navigieren und die Codierungsumgebung zu
+definieren). **Jupyter Hub** ist eine Mehrbenutzerversion von Jupyter Lab, die
+Institutionen lokal implementieren können ([wie wir am
+EMBL](https://jupyterhub.embl.de/)).
 
-The [extensive tutorial](https://jupyterbook.org/start/your-first-book.html) will guide you through the installation
-steps and detailed customisation available,  in the context of this lesson we are going to cover just the basics.
-First things first, let's install Jupyter Book. In your terminal:
+Und **Jupyter-Buch**?
+> Jupyter Book ist ein Open-Source-Projekt zur Erstellung von schönen,
+> publikationsreifen Büchern und Dokumenten aus Berechnungsmaterial.
+
+Das [ausführliche Tutorial](https://jupyterbook.org/start/your-first-book.html) wird Sie
+durch die Installationsschritte und die detaillierten Anpassungsmöglichkeiten führen, im
+Rahmen dieser Lektion werden wir nur die Grundlagen behandeln. Das Wichtigste zuerst:
+Installieren wir Jupyter Book. In Ihrem Terminal:
 
 ~~~
 pip install -U jupyter-book
 ~~~
+> 
 {: .language-bash }
 
-Please note: you will need to have **pip** installed too. Now, let's create our first book project. The
-`jupyter-book --help` command would help us in checking the options here, but this lesson will spoiler something: the
+Bitte beachten Sie: Sie müssen auch **pip** installiert haben. Lassen Sie uns nun unser
+erstes Buchprojekt erstellen. Der Befehl `jupyter-book --help` würde uns dabei helfen,
+die Optionen zu überprüfen, aber diese Lektion wird etwas spoilern: die
 
 ~~~
 jupyter-book create jupyter-book-demo
 ~~~
+> 
 {: .language-bash }
 
-command will create a basic Jupyter book in a `jupyter-book-demo` folder. This folder already includes the three things
-needed for building a book: a `_config.yml` file, a `_toc.yml` table of content and the book's content in a collection
-of MarkDown, reStructuredText or Jupyter Notebook files.
+Befehl erstellt ein einfaches Jupyter-Buch in einem `jupyter-book-demo`-Ordner. Dieser
+Ordner enthält bereits die drei Dinge, die zum Erstellen eines Buches benötigt werden:
+eine `_config.yml`-Datei, ein `_toc.yml`-Inhaltsverzeichnis und den Inhalt des Buches in
+einer Sammlung von MarkDown-, reStructuredText- oder Jupyter Notebook-Dateien.
 
-Since we are getting tired of all of this development and deployment, we don't really want to edit anything in the
-content, but we prioritise having it up and running in GitLab instead. Just guess, what do we need to add? A
-`.gitlab-ci.yml` file indeed.
+Da wir von der ganzen Entwicklung und Bereitstellung müde sind, wollen wir nicht
+wirklich etwas am Inhalt ändern, aber wir priorisieren stattdessen, dass er in GitLab
+läuft. Raten Sie mal, was wir hinzufügen müssen? In der Tat eine `.gitlab-ci.yml`-Datei.
 
 ~~~
 pages:
@@ -62,25 +72,39 @@ pages:
     paths:
       - public
 ~~~
+> 
 {: .language-yaml }
 
-This piece of code:
-1. Installs jupyter-book (or checks that it is correctly installed remotely).
-2. Cleans the folder from files resulting from (eventual) previous builds.
-3. runs the command `jupyter-book build .`, which builds the book in the folder into a `_build`
-subfolder. You can check the output by running the same command in your terminal, and you will realise that the
-actual HTML files are in the subfolder `_build/html`.
-4. It then moves the HTML content into our usual `public` folder where the artifacts are stored.
+Dieser Teil des Codes:
+1. Installiert jupyter-book (oder prüft, ob es korrekt installiert ist).
+2. Säubert den Ordner von Dateien, die von (eventuellen) früheren Builds stammen.
+3. führt den Befehl `jupyter-book build .` aus, der das Buch im Ordner in einem
+   Unterordner `_build` erstellt. Sie können die Ausgabe überprüfen, indem Sie den
+   gleichen Befehl in Ihrem Terminal ausführen, und Sie werden feststellen, dass sich
+   die eigentlichen HTML-Dateien im Unterordner `_build/html` befinden.
+4. Es verschiebt dann den HTML-Inhalt in unseren üblichen `public`-Ordner, wo die
+   Artefakte gespeichert sind.
 
-> ## Your time to experiment with a template
-> This template is deliberately minimal to give you the opportunity to test your documentation reading skills.
-> Check the topic guides at [jupyterbook.org](https://jupyterbook.org/intro.html) and find a way to:
-> 1. Add another page called "About" and linked from the table of contents.
-> 2. Play with the file format of this new page, add the same type of content in MarkDown, reStructuredTex and Notebook formats.
-> 3. Add one figure and a figure caption.
-> 4. Insert a code cell. If you are familiar with any programming language, add a simple plot and visualise the output of such plot into your page.
-> 5. For more advanced code features, check [how to make the code executable](https://jupyterbook.org/interactive/thebe.html)
-> 6. Check the [gallery of Jupyter books](https://executablebooks.org/en/latest/gallery.html) for inspiration!
+> ## Deine Zeit zum Experimentieren mit einer Vorlage
+> Diese Vorlage ist absichtlich minimal gehalten, um Ihnen die Möglichkeit zu geben,
+> Ihre Fähigkeiten beim Lesen der Dokumentation zu testen. Schauen Sie sich die
+> Themenleitfäden auf [jupyterbook.org](https://jupyterbook.org/intro.html) an und
+> finden Sie einen Weg, um:
+> 1. Fügen Sie eine weitere Seite mit dem Namen "Über" hinzu, die mit dem
+>    Inhaltsverzeichnis verlinkt ist.
+> 2. Spielen Sie mit dem Dateiformat dieser neuen Seite, fügen Sie die gleiche Art von
+>    Inhalt in den Formaten MarkDown, reStructuredTex und Notebook hinzu.
+> 3. Füge eine Abbildung und eine Bildunterschrift hinzu.
+> 4. Fügen Sie eine Codezelle ein. Wenn Sie mit einer Programmiersprache vertraut sind,
+>    fügen Sie einen einfachen Plot ein und visualisieren Sie die Ausgabe dieses Plots
+>    in Ihrer Seite.
+> 5. Für weitere fortgeschrittene Code-Funktionen, siehe [how to make the code
+>    executable](https://jupyterbook.org/interactive/thebe.html)
+> 6. Schauen Sie in der [Galerie der
+>    Jupyter-Bücher](https://executablebooks.org/en/latest/gallery.html) nach, um sich
+>    inspirieren zu lassen!
+> 
 {: .challenge}
+
 
 

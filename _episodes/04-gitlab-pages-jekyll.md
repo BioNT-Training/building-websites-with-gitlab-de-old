@@ -1,34 +1,43 @@
 ---
-title: "GitLab Pages with Jekyll"
+title: GitLab-Seiten mit Jekyll
 teaching: 0
 exercises: 0
 questions:
-- "How do I publish web pages through GitLab and Jekyll?"
+- How do I publish web pages through GitLab and Jekyll?
 objectives:
-- "Publish Markdown files as HTML on the web with GitHub Pages"
+- Publish Markdown files as HTML on the web with GitHub Pages
 keypoints:
-- "Through Jekyll, GitLab serves pages are generated from `.md` files"
+- Through Jekyll, GitLab serves pages are generated from `.md` files
 ---
 
-[Jekyll](https://jekyllrb.com/) is a powerful static site generator that may be behind GitLab Pages. It creates static HTML
-website content out of various files in your repository (Markdown files, CSS style sheets, page templates/layouts, etc.).
-This 'compiled' content is then served as your website.
 
-Jekyll makes managing your website easier because it depends on templates.
-Templates (or layouts in Jekyll notation) are blueprints that can be reused by multiple pages.
-For example, we (your instructors) did not style each single exercise in this lesson separately: we created a template
-that specify how exercises should be shown (the orange box, the dropdown solution box etc.) and every time
-we tag a block of text as "Exercise" it is shown this way.
+[Jekyll](https://jekyllrb.com/) ist ein leistungsstarker Generator für statische
+Websites, der hinter GitLab Pages stehen kann. Er erstellt statische
+HTML-Website-Inhalte aus verschiedenen Dateien in Ihrem Repository (Markdown-Dateien,
+CSS-Stylesheets, Seitenvorlagen/Layouts usw.). Dieser "kompilierte" Inhalt wird dann als
+Ihre Website bereitgestellt.
 
-We will cover Jekyll layouts in a bit; for now let's start learning Jekyll
-and its scripting language called [Liquid](https://shopify.github.io/liquid/basics/introduction/).
+Jekyll macht die Verwaltung Ihrer Website einfacher, weil es auf Vorlagen basiert.
+Vorlagen (oder Layouts in der Jekyll-Schreibweise) sind Entwürfe, die von mehreren
+Seiten wiederverwendet werden können. Zum Beispiel haben wir (Ihre Ausbilder) nicht jede
+einzelne Übung in dieser Lektion separat gestaltet: Wir haben eine Vorlage erstellt, die
+angibt, wie die Übungen angezeigt werden sollen (die orangefarbene Box, die
+Dropdown-Lösungsbox usw.) und jedes Mal, wenn wir einen Textblock als "Übung" markieren,
+wird er auf diese Weise angezeigt.
 
-## Global Parameters
+Wir werden Jekyll-Layouts in Kürze behandeln; für den Moment wollen wir Jekyll und seine
+Skriptsprache namens [Liquid](https://shopify.github.io/liquid/basics/introduction/)
+lernen.
 
-Also in this case, we will trigger and customise our deployment from the `.gitlab-ci.yml` file. You can decide to edit your
-previous version of the `group-website` repository, but we suggest to create a new one. Follow the steps in
-"Setting up a project" in the [introduction](https://grp-bio-it-workshops.embl-community.io/building-websites-with-gitlab/01-introduction/index.html)
-if you want to do so. Create/change the `.gitlab-ci.yml` file content with:
+## Globale Parameter
+
+Auch in diesem Fall werden wir unser Deployment aus der Datei `.gitlab-ci.yml` auslösen
+und anpassen. Sie können Ihre vorherige Version des `group-website`-Repositorys
+bearbeiten, wir empfehlen jedoch, eine neue Version zu erstellen. Folgen Sie den
+Schritten in "Einrichten eines Projekts" in der [Einführung]
+(https://grp-bio-it-workshops.embl-community.io/building-websites-with-gitlab/01-introduction/index.html),
+wenn Sie dies tun möchten. Erstellen/ändern Sie den Inhalt der `.gitlab-ci.yml` Datei
+mit:
 
 ~~~
 image: ruby:latest
@@ -44,21 +53,26 @@ pages:
   only:
     - main
 ~~~
+> 
 {: .language-yaml }
 
-This code requires the script to run on the environment of the latest Ruby version, installs the Jekyll gem, and builds the
-site to the public path (creating the folder remotely, you should not worry about it at this point).
-The result affects only the main branch.
+Dieser Code setzt voraus, dass das Skript in der Umgebung der neuesten Ruby-Version
+läuft, installiert das Jekyll-Gem und baut die Site im öffentlichen Pfad auf (der Ordner
+wird aus der Ferne erstellt, Sie sollten sich zu diesem Zeitpunkt keine Sorgen machen).
+Das Ergebnis betrifft nur den Hauptzweig.
 
-The execution of this pipeline also requires a `Gemfile`. Create it in the root folder with the following content:
+Die Ausführung dieser Pipeline erfordert auch eine `Gemfile`. Erstellen Sie diese im
+Stammordner mit dem folgenden Inhalt:
 ~~~
 source "https://rubygems.org"
 
 gem "jekyll"
 ~~~
+> 
 {: .language-shell }
 
-In brief, but we will look into it in more detail, Jekyll looks for text files that begin with a header formatted like this:
+Kurz gesagt, aber wir werden uns das noch genauer ansehen, sucht Jekyll nach
+Textdateien, die mit einem Header beginnen, der wie folgt formatiert ist:
 
 ~~~
 ---
@@ -68,16 +82,17 @@ other_variable: other_value
 
 ...stuff in the page...
 ~~~
+> 
 {: .source}
 
-and inserts the values of those variables into the page when formatting it.
-The three dashes that start the header *must* be the first three characters in the file:
-even a single space before them will make Jekyll ignore the file.
+und fügt die Werte dieser Variablen in die Seite ein, wenn sie formatiert wird. Die drei
+Bindestriche, mit denen die Kopfzeile beginnt, *müssen* die ersten drei Zeichen in der
+Datei sein: Schon ein einzelnes Leerzeichen davor führt dazu, dass Jekyll die Datei
+ignoriert.
 
-The header's content must be formatted as YAML, and may contain Booleans, numbers, character strings, lists,
-and dictionaries of name/value pairs.
-Values from the header are referred to in the page as `page.variable`.
-For example, this page:
+Der Inhalt des Headers muss als YAML formatiert sein und kann Booleans, Zahlen,
+Zeichenketten, Listen und Wörterbücher mit Name/Wert-Paaren enthalten. Die Werte der
+Kopfzeile werden in der Seite als `page.variable` bezeichnet. Zum Beispiel, diese Seite:
 
 ~~~
 ---
@@ -85,9 +100,10 @@ name: Science
 ---
 {% raw %}Today we are going to study {{page.name}}.{% endraw %}
 ~~~
+> 
 {: .source}
 
-is translated into:
+wird übersetzt in:
 
 ~~~
 <html>
@@ -96,10 +112,12 @@ is translated into:
   </body>
 </html>
 ~~~
+> 
 {: .html}
 
-> ## Exercise: Jekyll's syntax
-> Test your understanding of Jekyll's syntax. What would this template will be translated into?
+> ## Übung: Die Syntax von Jekyll
+> Testen Sie Ihr Verständnis von Jekylls Syntax. In was würde diese Vorlage übersetzt
+> werden?
 > ~~~
 > ---
 > name: Tom
@@ -108,8 +126,8 @@ is translated into:
 > {% raw %}{{page.name}} is in {{page.location}}. I believe {{page.location}} is a very nice city.{% endraw %}
 > ~~~
 > {: .source}
->
-> > ## Solution
+> 
+> > ## Lösung
 > > ~~~
 > > <html>
 > >   <body>
@@ -118,38 +136,49 @@ is translated into:
 > > </html>
 > > ~~~
 > > {: .html}
-> >
+> > 
+> > 
+> > 
 > {: .solution }
+> 
 {: .challenge }
 
-Jekyll's main configuration options are specified however in another file, called `_config.yml`.
-Let's create some configuration parameters for our website.
+Die Hauptkonfigurationsoptionen von Jekyll werden jedoch in einer anderen Datei namens
+`_config.yml` angegeben. Lassen Sie uns einige Konfigurationsparameter für unsere
+Website erstellen.
 
-1. Create a `_config.yml` file in your site’s root directory.
-2. Add parameters `description` and `email` to it as:
+1. Erstellen Sie eine `_config.yml`-Datei im Stammverzeichnis Ihrer Website.
+2. Fügen Sie die Parameter `description` und `email` hinzu als:
 
 ~~~
 description: This project develops training materials for reseachers wanting to learn to build project
 websites in GitLab Pages.
 email: team@carpentries.org
 ~~~
+> 
 {: .language-yaml}
 
-Global configuration settings from `_config.yml` are made available as `site.PARAMETER_NAME` variable in every
-page within the website. So, global parameter `email` we defined above would be accessed as `site.email`. Please note:
-this are global paramenters, hence different from the local page-specific parameters in the examples above.
+Globale Konfigurationseinstellungen von `_config.yml` werden als
+`site.PARAMETER_NAME`-Variable in jeder Seite innerhalb der Website verfügbar gemacht.
+Auf den globalen Parameter `email`, den wir oben definiert haben, würde also als
+`site.email` zugegriffen werden. Bitte beachten Sie: Es handelt sich um globale
+Parameter, die sich von den lokalen seitenbezogenen Parametern in den obigen Beispielen
+unterscheiden.
 
-In order to access the parameter's value within a page, you use Liquid's notation to output content by surrounding
-a variable in curly braces as `{% raw %}{{ variable }}{% endraw %}`.
+Um auf den Wert des Parameters innerhalb einer Seite zuzugreifen, verwenden Sie die
+Liquid-Notation, um den Inhalt auszugeben, indem Sie eine Variable in geschweifte
+Klammern wie `{% raw %}{{ variable }}{% endraw %}` einschließen.
 
-> ## Predefined Global Parameters
->In addition to the global parameters you define, Jekyll also makes a number of
-[useful predefined site-wide variables](https://jekyllrb.com/docs/variables#site-variables) available to you within
-> your website: e.g. `{% raw %}{{ site.time }}{% endraw %}` (the current time) or `{% raw %}{{ site.pages }}{% endraw %}`
-> (a list of all pages).
+> ## Vordefinierte globale Parameter
+> Zusätzlich zu den globalen Parametern, die Sie definieren, stellt Ihnen Jekyll auch
+> eine Reihe von [nützlichen vordefinierten seitenweiten
+> Variablen](https://jekyllrb.com/docs/variables#site-variables) innerhalb Ihrer Website
+> zur Verfügung: z.B. `{% raw %}{{ site.time }}{% endraw %}` (die aktuelle Zeit) oder
+> `{% raw %}{{ site.pages }}{% endraw %}` (eine Liste aller Seiten).
+> 
 {: .callout}
 
-Create a `index.md` file in the root folder, with the following content:
+Erstellen Sie eine `index.md` Datei im Stammverzeichnis, mit dem folgenden Inhalt:
 
 ~~~
 {% raw %}---
@@ -164,21 +193,25 @@ Welcome to {% raw %}{{ page.title }}{% endraw %}
 
 Have any questions about what we do? [We'd love to hear from you!]({% raw %}mailto:{{ site.email }}{% endraw %})
 ~~~
+> 
 {: .language-markdown }
 
-Your project should include the following files:
+Ihr Projekt sollte die folgenden Dateien enthalten:
 
 ![Basic Jekyll](../fig/basic_files_jekyll.png){: .image-with-shadow width="600px" }
 
-Commit and push your changes, then monitor the pipeline execution and check the final result at your
-`https://<your user name>.embl-community.io/group-website` URL.
+Commit und push Ihre Änderungen, dann überwachen Sie die Ausführung der Pipeline und
+überprüfen Sie das Endergebnis unter Ihrer `https://<your user
+name>.embl-community.io/group-website` URL.
 
-> ## Exercise: Create a Global Twitter Parameter
-> In `about.md` we have a Twitter URL under the 'Contact us' section. That's one piece of information that could go into
-> global parameters in `_config.yml` as you may want to repeat it on a footer of every page.
-> Make changes to your website to extract Twitter URL as a global parameter.
-> > ## Solution
-> > 1. Add parameter twitter to `_config.yml`:
+> ## Übung: Einen globalen Twitter-Parameter erstellen
+> In `about.md` haben wir eine Twitter URL unter dem Abschnitt 'Contact us'. Das ist
+> eine Information, die in die globalen Parameter in `_config.yml` aufgenommen werden
+> könnte, da Sie sie vielleicht in der Fußzeile jeder Seite wiederholen möchten. Nehmen
+> Sie Änderungen an Ihrer Website vor, um die Twitter-URL als globalen Parameter zu
+> extrahieren.
+> > ## Lösung
+> > 1. Füge den Parameter twitter zu `_config.yml` hinzu:
 > >    ~~~
 > >    description: "This research project develops training materials for reseachers wanting to learn to build project
 > >    websites in GitHub with GitHub Pages."
@@ -186,59 +219,75 @@ Commit and push your changes, then monitor the pipeline execution and check the 
 > >    twitter: "https://twitter.com/thecarpentries"
 > >    ~~~
 > >    {: .language-yaml}
-> >
-> > 2. Make use of the twitter parameter in `about.md`:
-> >
+> > 
+> > 
+> > 2. Benutzen Sie den Twitter-Parameter in `about.md`:
+> > 
 > >    ~~~
 > >    # About
-> >
+> > 
 > >    ## Project
-> >
+> > 
 > >    {% raw %}{{ site.description }}{% endraw %}
-> >
+> > 
 > >    ## Funders
-> >
+> > 
 > >    We gratefully acknowledge funding from the XYZ Founding Council, under grant number 'abc'.
-> >
+> > 
 > >    ## Cite us
-> >
+> > 
 > >    You can cite the project as:
-> >
+> > 
 > >    > *The Carpentries 2019 Annual Report. Zenodo. https://doi.org/10.5281/zenodo.3840372*
-> >
+> > 
 > >    ## Contact us
-> >
+> > 
 > >    - Email: [{% raw %}{{ site.email }}{% endraw %}](mailto:{% raw %}{{ site.email }}{% endraw %})
 > >    - Twitter: [{% raw %}{{ site.twitter }}{% endraw %}]({% raw %}{{ site.twitter }}{% endraw %})
 > >    ~~~
 > >    {: .language-markdown }
-> >
-> > 3. Note that you should not see any changes to your website really. However, you can now access your Twitter URL from
-> > any website page, should you need to.
-> >
+> > 
+> > 
+> > 3. Beachten Sie, dass Sie eigentlich keine Änderungen an Ihrer Website sehen
+> >    sollten. Allerdings können Sie jetzt von jeder Seite Ihrer Website aus auf Ihre
+> >    Twitter-URL zugreifen, falls Sie dies wünschen.
+> > 
 > {: .solution}
+> 
 {: .challenge}
 
-## Local Parameters
+## Lokale Parameter
 
-In addition to global (site-wide) parameters available via the `site` global variable, Jekyll makes _local_ (page-specific) information available to you via the `page` variable.
-Some of these are pre-defined - like `page.title`, which gives you the title of the page that is currently active/being visited. Others you can define yourself. Check this [list of predefined page parameters](https://jekyllrb.com/docs/variables#page-variables).
+Zusätzlich zu den globalen (site-weiten) Parametern, die über die globale Variable
+`site` verfügbar sind, stellt Jekyll _lokale_ (seiten-spezifische) Informationen über
+die Variable `page` zur Verfügung. Einige davon sind vordefiniert - wie `page.title`,
+die Ihnen den Titel der Seite gibt, die gerade aktiv ist/besucht wird. Andere können Sie
+selbst definieren. Sehen Sie sich diese [Liste der vordefinierten
+Seitenparameter](https://jekyllrb.com/docs/variables#page-variables) an.
 
-You can define local parameters using YAML notation within a Markdown page by including it in a page header and delimiting the header with triple-dashed lines `---`. These headers are called *front matter* and are
-used to set variables and metadata on individual pages in your Jekyll site.
+Sie können innerhalb einer Markdown-Seite lokale Parameter in YAML-Notation definieren,
+indem Sie diese in einen Seitenkopf einfügen und den Kopf mit dreifach gestrichelten
+Linien `---` abgrenzen. Diese Header werden *front matter* genannt und dienen dazu,
+Variablen und Metadaten auf einzelnen Seiten Ihrer Jekyll-Site zu setzen.
 
-> ## Front matter
-> From [Jekyll's website](https://jekyllrb.com/docs/front-matter/):
->
->   >   Any file that contains a YAML front matter block will be processed by Jekyll as a special file. The front matter must be the first thing in the file and must take the form of valid YAML set between triple-dashed lines.
+> ## Titelbild
+> Von [Jekylls Website](https://jekyllrb.com/docs/front-matter/):
+> 
+> > Jede Datei, die einen YAML-Frontmaterie-Block enthält, wird von Jekyll als eine
+> > spezielle Datei verarbeitet. Der Frontmatter muss das erste Element der Datei sein
+> > und muss die Form von gültigem YAML haben, das zwischen dreifach gestrichelten
+> > Linien steht.
+> 
 {: .callout}
 
-> ## Global and Local Parameters Are Case Sensitive
-> It is important to note that the parameters used in the sites are case sensitive.
-> By convention, usually they are all lowercase characters.
+> ## Globale und lokale Parameter sind Case Sensitive
+> Es ist wichtig zu beachten, dass die in den Seiten verwendeten Parameter zwischen
+> Groß- und Kleinschreibung unterscheiden. Normalerweise werden sie alle in
+> Kleinbuchstaben geschrieben.
+> 
 {: .callout}
 
-Here is an example:
+Hier ist ein Beispiel:
 
 ~~~
 ---
@@ -247,53 +296,70 @@ title: "My first blog post"
 author: "Danger Mouse"
 ---
 ~~~
+> 
 {: .language-yaml }
 
-Between these triple-dashed lines, you can overwrite predefined variables (like `page.layout` or `page.title`) or create custom ones you need locally on the page (like `page.author`). These variables will then be available for you to access using Liquid's tags (e.g. `{% raw %}{{{% endraw %} page.title {% raw %}}}{% endraw %}` ) further down in the file and also in any files that include this one.  Note that these variables are only accessible on that page.  You will get an error if you try to reference a `page.variable` that was defined on a different page.
+Zwischen diesen dreifach gestrichelten Linien können Sie vordefinierte Variablen (wie
+`page.layout` oder `page.title`) überschreiben oder benutzerdefinierte Variablen
+erstellen, die Sie lokal auf der Seite benötigen (wie `page.author`). Auf diese
+Variablen können Sie dann über die Tags von Liquid (z. B. `{% raw %}{{{% endraw %}
+page.title {% raw %}}}{% endraw %}` ) weiter unten in der Datei und in allen Dateien,
+die diese enthalten, zugreifen. Beachten Sie, dass diese Variablen nur auf dieser Seite
+zugänglich sind. Sie erhalten eine Fehlermeldung, wenn Sie versuchen, auf eine
+`page.variable` zu verweisen, die auf einer anderen Seite definiert wurde.
 
-> ## Exercise: Practice With Local Variables
->
-> Let's practice making and using local variables. Think of a local variable you may want to use only in your `about.md` or `index.md` page.
-> If you cannot think of any, create a local variable called 'lesson-example' with the value
-> of 'https://carpentries.github.io/lesson-example/' and reference it in your `index.md`.
->
-> What did you add to your `index.md` to create this variable?
-> Where did you add the front matter in your `index.md`?
-> How did you reference that variable?
->
-> > ## Solution
-> >
-> > Create a YAML header at the very top of `index.md` and add the `lesson-example` variable in between the
-> > triple-dash delimiters. You can then reference the value within your `index.md` page as
-`{% raw %}{{{% endraw %} page.lesson-example {% raw %}}}{% endraw %}`. Your file should now look like:
-> >
+> ## Übung: Übung mit lokalen Variablen
+> 
+> Lassen Sie uns die Erstellung und Verwendung lokaler Variablen üben. Denken Sie an
+> eine lokale Variable, die Sie nur auf Ihrer Seite `about.md` oder `index.md` verwenden
+> wollen. Wenn Ihnen keine einfällt, erstellen Sie eine lokale Variable mit dem Namen
+> 'lesson-example' mit dem Wert 'https://carpentries.github.io/lesson-example/' und
+> verweisen Sie auf sie in Ihrer `index.md`.
+> 
+> Was haben Sie zu Ihrem `index.md` hinzugefügt, um diese Variable zu erstellen? Wo
+> haben Sie das Frontmate in Ihrer `index.md` eingefügt? Wie haben Sie diese Variable
+> referenziert?
+> 
+> > ## Lösung
+> > 
+> > Erstellen Sie einen YAML-Header ganz oben in `index.md` und fügen Sie die Variable
+> > `lesson-example` zwischen den dreifachen Trennstrichen ein. Sie können dann auf den
+> > Wert innerhalb Ihrer `index.md` Seite als `{% raw %}{{{% endraw %}
+> > page.lesson-example {% raw %}}}{% endraw %}` verweisen. Ihre Datei sollte nun wie
+> > folgt aussehen:
+> > 
 > > ~~~
 > > ---
 > > lesson-example: "https://carpentries.github.io/lesson-example/"
 > > ---
-> >
+> > 
 > > # Building Websites in GitHub
-> >
+> > 
 > > ## Description
 > > {% raw %}{{ site.description }}{% endraw %}
-> >
+> > 
 > > More details about the project are available from the [About page](about).
-> >
+> > 
 > > See some [examples of our work]({% raw %}{{{% endraw %} page.lesson-example {% raw %}}}{% endraw %}).
-> >
+> > 
 > > Have any questions about what we do? [We'd love to hear from you!]({% raw %}mailto:{{ site.email }}{% endraw %})
 > > ~~~
 > > {: .language-markdown }
-> >
-> > Note that this variable is not accessible from `about.md` page and is local to `index.md`.
+> > 
+> > 
+> > Beachten Sie, dass diese Variable nicht von der Seite `about.md` aus zugänglich ist
+> > und lokal auf `index.md` liegt.
+> > 
 > {: .solution}
+> 
 {: .challenge}
 
-## Adding new pages
+## Hinzufügen neuer Seiten
 
-The next step will be to create another page of this website. Ideally, our website will have multiple pages and
-therefore, to keep things in order, we will create the `pages` folder to store them. In this folder, create an
-`about.md` file with the following content:
+Der nächste Schritt wird sein, eine weitere Seite dieser Website zu erstellen.
+Idealerweise wird unsere Website mehrere Seiten haben, und um Ordnung zu halten, werden
+wir den Ordner `pages` erstellen, um sie zu speichern. Erstellen Sie in diesem Ordner
+eine `about.md`-Datei mit folgendem Inhalt:
 
 ~~~
 {% raw %}---
@@ -322,51 +388,68 @@ You can cite the project as:
 - Email: [{% raw %}{{ site.email }}{% endraw %}](mailto:{% raw %}{{ site.email }}{% endraw %})
 - Twitter: [@thecarpentries](https://twitter.com/thecarpentries)
 ~~~
+> 
 {: .language-markdown }
 
-Note that the URL location of this page is specified in the header, through the `permalink` attribute.
+Beachten Sie, dass die URL dieser Seite in der Kopfzeile durch das Attribut `permalink`
+angegeben ist.
 
-This is the current aspect of your folders:
+Dies ist der aktuelle Aspekt Ihres Ordners:
 
-![About Jekyll](../fig/about-jekyll-pages.png){: .image-with-shadow width="600px" }
+![Über Jekyll](../fig/about-jekyll-pages.png){: .image-with-shadow width="600px" }
 
-Now, we should edit the `index.md` file to include a link to this new about page, in order to be able to reach it
-from the main page. Add a line the `index.md` to include:
+Nun sollten wir die Datei `index.md` editieren, um einen Link zu dieser neuen
+About-Seite einzufügen, damit sie von der Hauptseite aus erreicht werden kann. Fügen Sie
+eine Zeile in `index.md` ein:
 
 ~~~
 More details about the project are available from the [About page](about).
 ~~~
+> 
 {: .language-markdown }
 
-The link in this line will redirect to `https://<your user name>.embl-community.io/group-website/about`, that is
-the URL of our new about page.
+Der Link in dieser Zeile wird auf `https://<your user
+name>.embl-community.io/group-website/about` umleiten, das ist die URL unserer neuen
+About-Seite.
 
-Commit, push and go to your website to see the changes.
-Note that site parameters will not render nicely when viewing files in GitHub (they will be displayed as text
-`{% raw %}{{ site.PARAMETER_NAME }}{% endraw %}` rather than the parameter's rendered value) but will in the website.
+Commit, push und gehen Sie auf Ihre Website, um die Änderungen zu sehen. Beachten Sie,
+dass Site-Parameter bei der Anzeige von Dateien in GitHub nicht korrekt dargestellt
+werden (sie werden als Text `{% raw %}{{ site.PARAMETER_NAME }}{% endraw %}` und nicht
+als gerenderter Wert des Parameters angezeigt), aber auf der Website schon.
 
-> ## Reuse and Reduce
-> Jekyll's global parameters are a useful way to keep all your site-wide configuration in
-> a single place (even if you only use them once). In combination with Jekyll layouts/templates (to be covered in the next episode) they are a great way of creating reusable markup snippets that can be repeated on multiple or even on every page of your website. Reuse helps you reduce the amount of code you have to write.
+> ## Wiederverwenden und Reduzieren
+> Jekylls globale Parameter sind ein nützlicher Weg, um all Ihre site-weiten
+> Konfigurationen an einem einzigen Ort zu halten (selbst wenn Sie sie nur einmal
+> benutzen). In Kombination mit Jekyll-Layouts/Vorlagen (die in der nächsten Folge
+> behandelt werden) sind sie eine großartige Möglichkeit, wiederverwendbare
+> Markup-Snippets zu erstellen, die auf mehreren oder sogar auf jeder Seite Ihrer
+> Website wiederholt werden können. Wiederverwendung hilft Ihnen, die Menge an Code zu
+> reduzieren, die Sie schreiben müssen.
+> 
 {: .callout}
 
-## Useful links
+## Nützliche Links
 
-This was just meant to be a very basic tutorial. The possibility of sites customisation with Jekyll go far beyond what
-shown here, you could for example:
+Dies sollte nur ein sehr grundlegendes Tutorial sein. Die Möglichkeiten der
+Seitenanpassung mit Jekyll gehen weit über das hinaus, was hier gezeigt wurde, man
+könnte zum Beispiel:
 
-- design page layouts (such as the exercises/solutions in this lesson),
-- work with loops to process variables containing multiple values iteratively,
-- use filters to control the format of variables when inserted in a page,
+- Entwurf von Seitenlayouts (wie die Übungen/Lösungen in dieser Lektion),
+- mit Schleifen arbeiten, um Variablen mit mehreren Werten iterativ zu verarbeiten,
+- Verwenden Sie Filter, um das Format der Variablen zu kontrollieren, wenn sie in eine
+  Seite eingefügt werden,
 
-and more. [This lesson](https://carpentries-incubator.github.io/jekyll-pages-novice/) from The Carpentries, even if
-designed for GitHub, is a valuable resource to learn more about how to do so.
+und mehr. [Diese Lektion](https://carpentries-incubator.github.io/jekyll-pages-novice/)
+von The Carpentries ist, auch wenn sie für GitHub konzipiert ist, eine wertvolle
+Ressource, um mehr darüber zu erfahren, wie man das macht.
 
-If you are looking for the official GitLab documentation about GitLab Pages with Jekyll, follow
-[this link](https://docs.gitlab.com/ee/user/project/pages/getting_started/pages_from_scratch.html).
+Wenn Sie nach der offiziellen GitLab-Dokumentation über GitLab Pages mit Jekyll suchen,
+folgen Sie [diesem
+Link](https://docs.gitlab.com/ee/user/project/pages/getting_started/pages_from_scratch.html).
 
-Finally, [this project](https://gitlab.com/pages/jekyll) contains a more elaborated template of a GitLab and Jekyll
-based website.
+Schließlich enthält [dieses Projekt](https://gitlab.com/pages/jekyll) eine ausgefeiltere
+Vorlage für eine auf GitLab und Jekyll basierende Website.
 
 
 {% include links.md %}
+

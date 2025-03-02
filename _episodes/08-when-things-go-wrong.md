@@ -1,31 +1,34 @@
 ---
-title: "When things go wrong"
+title: Wenn etwas schief geht
 teaching: 0
 exercises: 0
-questions: "How do I troubleshoot errors in the GitLab pipelines?"
+questions: How do I troubleshoot errors in the GitLab pipelines?
 objectives:
-- "Get feedback from GitLab about why a pipeline failed"
+- Get feedback from GitLab about why a pipeline failed
 keypoints:
-- "If a pipeline fails, GitLab will provide you useful feedback on why"
+- If a pipeline fails, GitLab will provide you useful feedback on why
 ---
 
 
-## When Things Go Wrong
 
-So far we have seen how to successfully use various technologies to produce a website.
-There are however some situations where they may fail to do so either due to a typo or missing information. We will go
-through one of these cases with a Jekyll example.
+## Wenn etwas schief geht
 
-> ## Exercise: Troubleshooting Jekyll
->
-> This exercise will help you recognise what common mistakes look like
-> when working with these elements of a Jekyll website.
->
-> Edit your `_config.yml` file and substitute a `:` with a `=` character in one of the variables.
->
-> > ## Solution
-> >
-> > For instance, `mail=team@carpentries.org` instead of `mail:team@carpentries.org`.
+Bis jetzt haben wir gesehen, wie man erfolgreich verschiedene Technologien zur
+Erstellung einer Website einsetzt. Es gibt jedoch einige Situationen, in denen dies
+aufgrund eines Tippfehlers oder fehlender Informationen nicht möglich ist. Wir werden
+einen dieser Fälle anhand eines Jekyll-Beispiels durchgehen.
+
+> ## Übung: Fehlersuche in Jekyll
+> 
+> Diese Übung soll Ihnen helfen zu erkennen, wie häufige Fehler bei der Arbeit mit
+> diesen Elementen einer Jekyll-Website aussehen.
+> 
+> Bearbeiten Sie Ihre `_config.yml` Datei und ersetzen Sie ein `:` durch ein `=` Zeichen
+> in einer der Variablen.
+> 
+> > ## Lösung
+> > 
+> > Zum Beispiel `mail=team@carpentries.org` anstelle von `mail:team@carpentries.org`.
 > > ~~~
 > > description: "This research project develops training materials for reseachers wanting to learn to build project
 > > websites in GitHub with GitHub Pages."
@@ -33,29 +36,43 @@ through one of these cases with a Jekyll example.
 > > twitter: "https://twitter.com/thecarpentries
 > > ~~~
 > > {: .language-yaml}
-> >
-> > If you navigate your GitHub repository you would be able to see something break in `about.md` where we use
-> > `{% raw %}{{ site.twitter }}{% endraw %}` however, contrary to what we saw before with invalid Markdown,
-> > Jekyll will refuse to build the website and produce an error message.
-> >
-> > We will see after this where to find the error message and identify what caused them.
+> > 
+> > 
+> > Wenn Sie in Ihrem GitHub-Repository navigieren, könnten Sie sehen, dass etwas in
+> > `about.md` kaputt geht, wo wir `{% raw %}{{ site.twitter }}{% endraw %}` verwenden.
+> > Im Gegensatz zu dem, was wir zuvor mit ungültigem Markdown gesehen haben, weigert
+> > sich Jekyll jedoch, die Website zu erstellen und gibt eine Fehlermeldung aus.
+> > 
+> > Danach werden wir sehen, wo die Fehlermeldung zu finden ist und was sie verursacht
+> > hat.
+> > 
 > {: .solution }
+> 
 {: .challenge }
 
-If you were keeping an eye on the GitLab pipeline execution page until now (`CI/CD > Pipelines`), you may have noticed
-that the once you push the pipeline results "pending", then it starts "running", and eventually it "passes".
-Eventually. If it doesn't, then the status is "failed", you may receive an email about it (depending on your GitLab account settings) and you shouldn't panic.
-How can we instead understand what caused the error, and fix it? The "failed" status happens to be a button, let's click it.
+Wenn Sie die Seite zur Ausführung der GitLab-Pipeline bis jetzt im Auge behalten haben
+(`CI/CD > Pipelines`), ist Ihnen vielleicht aufgefallen, dass die Ergebnisse der
+Pipeline nach dem Verschieben "ausstehend" sind, dann "laufen" und schließlich
+"bestanden" werden. Irgendwann. Wenn dies nicht der Fall ist, lautet der Status
+"fehlgeschlagen", Sie erhalten möglicherweise eine E-Mail darüber (je nach den
+Einstellungen Ihres GitLab-Kontos) und sollten nicht in Panik geraten. Wie können wir
+stattdessen verstehen, was den Fehler verursacht hat, und ihn beheben? Der Status
+"fehlgeschlagen" ist zufällig eine Schaltfläche, klicken wir sie an.
 
-![click on the failed button to access the pipeline log](../fig/gitlab-error.png)
+![Klicken Sie auf die Schaltfläche "failed", um das Pipeline-Protokoll
+aufzurufen](../fig/gitlab-error.png)
 
-Once again, you can click on the ❌ <span style="color:red">pages</span> button to access more details, i.e. the
-complete log of our pipeline execution. Scroll up the terminal-like window to see how it started, prepared the
-environments, installed dependencies and correctly executed until the command `bundle exec jekyll build - public`.
-Remember that? It is the command that launches Jekyll, we included it in the `.gitlab-ci.yml` file.
+Auch hier können Sie auf die Schaltfläche ❌ <span style="color:red">Seiten</span>
+klicken, um auf weitere Details zuzugreifen, z. B. auf das vollständige Protokoll der
+Ausführung unserer Pipeline. Scrollen Sie im terminalähnlichen Fenster nach oben, um zu
+sehen, wie die Pipeline gestartet, die Umgebungen vorbereitet, die Abhängigkeiten
+installiert und bis zum Befehl `bundle exec jekyll build - public` korrekt ausgeführt
+wurde. Erinnern Sie sich daran? Es ist der Befehl, der Jekyll startet, wir haben ihn in
+die Datei `.gitlab-ci.yml` aufgenommen.
 
-Based on this, we have reasons to suspect that the error here is related to Jekyll being unable to build the page.
-Reading more carefully in order to get more details, we find:
+Wir haben Grund zu der Annahme, dass der Fehler hier damit zusammenhängt, dass Jekyll
+die Seite nicht erstellen kann. Wenn wir genauer lesen, um mehr Details zu erhalten,
+finden wir:
 
 ~~~
 $ bundle exec jekyll build -d public
@@ -65,61 +82,73 @@ $ bundle exec jekyll build -d public
                     ------------------------------------------------
 /usr/local/bundle/gems/safe_yaml-1.0.5/lib/safe_yaml/load.rb:143:in `parse': (/builds/hpg_ToyM/0/grp-bio-it/template-pages-jekyll/_config.yml): could not find expected ':' while scanning a simple key at line 3 column 1 (Psych::SyntaxError)
 ~~~
+> 
 {: .language-bash }
 
-This means two things: first, the log suggests a way to eventually get more details, i.e. to modify the `.gitlab-ci.yml`
-file by adding `--trace` to the command `bundle exec jekyll build -d public`, that thus becomes
-`bundle exec jekyll build -d public --trace`. However, we don't really need that: the next sentence is clear enough.
-It says, there was an error in parsing the `_config.yml` file because Jekyll could not find the expected `:` character.
-Since this typo prevents Jekyll from building the page, the process cannot continue.
+Dies bedeutet zwei Dinge: Erstens schlägt das Protokoll einen Weg vor, um mehr Details
+zu erhalten, d.h. die Datei `.gitlab-ci.yml` zu modifizieren, indem man `--trace` zum
+Befehl `bundle exec jekyll build -d public` hinzufügt, der so zu `bundle exec jekyll
+build -d public --trace` wird. Aber das brauchen wir nicht wirklich: der nächste Satz
+ist klar genug. Er besagt, dass es einen Fehler beim Parsen der Datei `_config.yml` gab,
+weil Jekyll das erwartete Zeichen `:` nicht finden konnte. Da dieser Tippfehler Jekyll
+daran hindert, die Seite zu erstellen, kann der Prozess nicht fortgesetzt werden.
 
-> ## Failure Will Not Remove Your Website
->
-> Given the failure you may be wondering what happened to the website?
-> If you visit the address you will find that the website is still be available.
->
-> GitLab will keep your previous version online until the error is fixed
-> and a new build is completed successfully.
+> ## Bei Misserfolg wird Ihre Website nicht entfernt
+> 
+> Angesichts des Fehlers fragen Sie sich vielleicht, was mit der Website passiert ist?
+> Wenn Sie die Adresse besuchen, werden Sie feststellen, dass die Website immer noch
+> verfügbar ist.
+> 
+> GitLab hält Ihre vorherige Version online, bis der Fehler behoben ist und ein neuer
+> Build erfolgreich abgeschlossen wurde.
+> 
 {: .callout }
 
-We should go back to our `_config.yml` file and fix the `=` error we made (on purpose, this time).
-Then push the project again, and problem solved!
+Wir sollten zu unserer Datei `_config.yml` zurückkehren und den Fehler `=` beheben, den
+wir (diesmal absichtlich) gemacht haben. Dann pushen Sie das Projekt erneut, und das
+Problem ist gelöst!
 
-> ## Exercise: Practice With Troubleshooting Jekyll
->
-> Sometimes typos happen and can make your website change in surprising ways.
-> Let's experiment with some possible issues that might come up and see what happens.
->
-> Try the changes listed below on your `index.md` file and see what happens when the page renders.
-> You will want to correct the previous mistake each time.
-> 1. Use a global or local variable that you didn't define first.
-> 2. Leave the dash off the end of the YAML header.
-> 3. Don't put a space between the YAML header and the rest of the page
-> 4. Put the YAML header in a different location in the page.
->
-> > ## Solution
-> >
-> > 1. The place where you used the undefined variable is blank but otherwise no error.
-> >    Example:
-> >
+> ## Übung: Übung mit der Fehlersuche in Jekyll
+> 
+> Manchmal passieren Tippfehler und können Ihre Website auf überraschende Weise
+> verändern. Lassen Sie uns mit einigen möglichen Problemen experimentieren und sehen,
+> was passiert.
+> 
+> Probieren Sie die unten aufgeführten Änderungen an Ihrer `index.md`-Datei aus und
+> beobachten Sie, was passiert, wenn die Seite gerendert wird. Sie werden jedes Mal den
+> vorherigen Fehler korrigieren wollen.
+> 1. Verwenden Sie eine globale oder lokale Variable, die Sie nicht vorher definiert
+>    haben.
+> 2. Lassen Sie den Bindestrich am Ende des YAML-Headers weg.
+> 3. Fügen Sie kein Leerzeichen zwischen dem YAML-Header und dem Rest der Seite ein
+> 4. Setzen Sie den YAML-Header an eine andere Stelle in der Seite.
+> 
+> > ## Lösung
+> > 
+> > 1. Die Stelle, an der Sie die undefinierte Variable verwendet haben, ist leer, aber
+> >    ansonsten kein Fehler. Beispiel:
+> > 
 > >    ~~~
 > >    Hi! {% raw %}{{ site.greeting }}{% endraw %}. What have you been up to?
 > >    ~~~
 > >    {: .language-markdown }
-> >
-> > 2. The header shows somewhat in the file and the variable that was defined goes to
-> >    the index page intead of the link we set.
-> >
+> > 
+> > 
+> > 2. Die Kopfzeile zeigt etwas in der Datei an und die Variable, die definiert wurde,
+> >    geht zur Indexseite anstelle des Links, den wir gesetzt haben.
+> > 
 > >    ~~~
 > >    ---
 > >    lesson-example: "https://carpentries.github.io/lesson-example/"
-> >
+> > 
 > >    Examples of our work can be found at: {% raw %}{{ page.lesson-example }}{% endraw %}
 > >    ~~~
 > >    {: .language-markdown }
-> >
-> > 3. This doesn't seem to affect our page but can often make more complex pages break.
-> >
+> > 
+> > 
+> > 3. Dies scheint unsere Seite nicht zu beeinträchtigen, kann aber oft dazu führen,
+> >    dass komplexere Seiten abbrechen.
+> > 
 > >    ~~~
 > >    ---
 > >    lesson-example: "https://carpentries.github.io/lesson-example/"
@@ -127,9 +156,11 @@ Then push the project again, and problem solved!
 > >    Examples of our work can be found at: {% raw %}{{ page.lesson-example }}{% endraw %}
 > >    ~~~
 > >    {: .language-markdown }
-> >
-> > 4. This also makes the header somewhat show in the page and breaks the variable link we created.
-> >
+> > 
+> > 
+> > 4. Dadurch wird auch die Kopfzeile auf der Seite angezeigt und die von uns erstellte
+> >    variable Verknüpfung unterbrochen.
+> > 
 > >    ~~~
 > >    Examples of our work can be found at: {% raw %}{{ page.lesson-example }}{% endraw %}
 > >    ---
@@ -137,7 +168,12 @@ Then push the project again, and problem solved!
 > >    ---
 > >    ~~~
 > >    {: .language-markdown }
-> >
+> > 
 > {: .solution}
-> Note: Be sure to fix any errors you intentionally introduced in your page before moving on.
+> 
+> Hinweis: Beheben Sie alle Fehler, die Sie absichtlich in Ihre Seite eingefügt haben,
+> bevor Sie weitermachen.
+> 
 {: .challenge}
+
+

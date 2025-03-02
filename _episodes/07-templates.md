@@ -1,65 +1,84 @@
 ---
-title: "GitLab Templates"
+title: GitLab-Vorlagen
 teaching: 0
 exercises: 0
 questions:
-- "Where can I find pre-built projects/themes for my site?"
+- Where can I find pre-built projects/themes for my site?
 objectives:
-- "Find and fork pre-existing templates to determine the technologies behind a project and the styles of the deriving website"
+- Find and fork pre-existing templates to determine the technologies behind a project
+  and the styles of the deriving website
 keypoints:
-- "You can find many pre-existing templates for sites on the Internet"
-- "You can find the presented themes for sites in our local GitLab"
-- "You can avoid duplicated effort by basing new layouts on previous ones"
+- You can find many pre-existing templates for sites on the Internet
+- You can find the presented themes for sites in our local GitLab
+- You can avoid duplicated effort by basing new layouts on previous ones
 ---
 
-## Bio-IT templates
 
-The templates that we developed together are available in our GitLab platform:
+## Bio-IT-Vorlagen
+
+Die Vorlagen, die wir gemeinsam entwickelt haben, sind in unserer GitLab-Plattform
+verfügbar:
 - [Plain HTML template](https://git.embl.de/grp-bio-it/template_pages_html)
-- [Jekyll template](https://git.embl.de/grp-bio-it/template-pages-jekyll)
-- [Sphinx template](https://git.embl.de/grp-bio-it/template-pages-sphinx)
-- [Jupyter book](https://git.embl.de/grp-bio-it/template-jupyter-book)
+- [Jekyll-Vorlage](https://git.embl.de/grp-bio-it/template-pages-jekyll)
+- [Sphinx-Vorlage](https://git.embl.de/grp-bio-it/template-pages-sphinx)
+- [Jupyter-Buch](https://git.embl.de/grp-bio-it/template-jupyter-book)
 
-They might be slightly enriched compared to what we went through during this lesson, for example the plain HTML template
-also features a `.css` file, but they are kept minimal on purpose. If you want to use them as a base for your own
-project, you should **fork** them. If you do so to develop your own project, and not to contribute to the template itself,
-you should next **remove the fork relationship**. Let's go through the process together.
+Sie könnten im Vergleich zu dem, was wir in dieser Lektion durchgenommen haben, leicht
+angereichert sein, zum Beispiel enthält die einfache HTML-Vorlage auch eine
+`.css`-Datei, aber sie sind absichtlich minimal gehalten. Wenn Sie sie als Basis für Ihr
+eigenes Projekt verwenden wollen, sollten Sie sie **aufspalten**. Wenn Sie dies tun, um
+Ihr eigenes Projekt zu entwickeln und nicht, um zur Vorlage selbst beizutragen, sollten
+Sie als nächstes **die Fork-Beziehung** aufheben. Lassen Sie uns den Prozess gemeinsam
+durchgehen.
 
-![fork a repository through the Fork button](../fig/template-pages-fork.png)
+![ein Repository über die Schaltfläche Fork forken](../fig/template-pages-fork.png)
 
-Fork a project by clicking the "Fork" button on the right side of the project title. This will open a menu (shown below)
-very similar to the one that prompts when you open a new project. You can decide to keep your project private, and edit
-the title and description. You can also place it in the relevant group/namespace.
+Forken Sie ein Projekt, indem Sie auf die Schaltfläche "Fork" auf der rechten Seite des
+Projekttitels klicken. Daraufhin öffnet sich ein Menü (siehe unten), das dem Menü, das
+beim Öffnen eines neuen Projekts angezeigt wird, sehr ähnlich ist. Sie können
+entscheiden, ob Ihr Projekt privat bleiben soll, und den Titel und die Beschreibung
+bearbeiten. Sie können es auch in die entsprechende Gruppe/den entsprechenden Namensraum
+einordnen.
 
-![the fork project menu](../fig/fork-project-menu.png)
+![das fork-Projektmenü](../fig/fork-project-menu.png)
 
-Once you are done, please remove the fork relationship. You can edit the project settings on the left side menu on the
-project page, follow: `Settings > General > Advanced` and then scroll down to the "Remove fork relationship" card.
+Sobald Sie fertig sind, entfernen Sie bitte die Fork-Beziehung. Sie können die
+Projekteinstellungen im linken Menü auf der Projektseite bearbeiten, folgen Sie
+`Settings > General > Advanced` und scrollen Sie dann nach unten zur Karte "Remove fork
+relationship".
 
 ![remove fork relationship](../fig/advanced-settings.png)
 
-Once this is done, you can clone your repository locally and start editing the template. If you need a recap about
-cloning, forking, pushing and pulling in Git please check [this lesson](https://swcarpentry.github.io/git-novice/)
-by The Carpentries.
+Sobald dies erledigt ist, können Sie Ihr Repository lokal klonen und mit der Bearbeitung
+der Vorlage beginnen. Wenn Sie eine Zusammenfassung über Klonen, Forking, Pushing und
+Pulling in Git benötigen, lesen Sie bitte [diese Lektion]
+(https://swcarpentry.github.io/git-novice/) von The Carpentries.
 
-## More templates
+## Weitere Vorlagen
 
-Wonder where you can find more examples of GitLab pages projects? Check [this link](https://gitlab.com/pages).
-It includes more than 40 examples, based on multiple technologies. Also in those cases, it is good a practice to
-remove the fork relationship if your aim is to use the template for the development of your own website, and not to
-contribute to the template itself. Some examples of template you will find in this repository are:
-- [**courseware-template**](https://gitlab.com/pages/courseware-template), a Jekyll-based template for a course website.
-You can see it in action [here](https://courseware-as-code.gitlab.io/courseware-tutorial/). It includes styles to
-format lecture content, quizzes and slides.
-- [**hugo blog template**](https://gitlab.com/pages/hugo), the template to [build blogs](https://pages.gitlab.io/hugo/)
-based on [Hugo](https://gohugo.io/).
-- [**jupyterbook**](https://gitlab.com/pages/jupyterbook), a template to generate books and documents integrating Python
-code. See it rendered [here](https://pages.gitlab.io/jupyterbook/intro.html).
+Sie fragen sich, wo Sie weitere Beispiele für GitLab-Seitenprojekte finden können? Sehen
+Sie sich [diesen Link](https://gitlab.com/pages) an. Er enthält mehr als 40 Beispiele,
+die auf verschiedenen Technologien basieren. Auch in diesen Fällen ist es eine gute
+Praxis, die Fork-Beziehung zu entfernen, wenn Ihr Ziel darin besteht, die Vorlage für
+die Entwicklung Ihrer eigenen Website zu verwenden und nicht, zur Vorlage selbst
+beizutragen. Einige Beispiele für Vorlagen, die Sie in diesem Repository finden, sind:
+- [**courseware-template**](https://gitlab.com/pages/courseware-template), eine
+  Jekyll-basierte Vorlage für eine Kurs-Website. Sie können es
+  [hier](https://courseware-as-code.gitlab.io/courseware-tutorial/) in Aktion sehen. Es
+  enthält Stile zur Formatierung von Vorlesungsinhalten, Quizfragen und Folien.
+- [**hugo blog template**](https://gitlab.com/pages/hugo), die Vorlage für [build
+  blogs](https://pages.gitlab.io/hugo/) basierend auf [Hugo](https://gohugo.io/).
+- [**jupyterbook**](https://gitlab.com/pages/jupyterbook), eine Vorlage zur Erstellung
+  von Büchern und Dokumenten, die Python-Code integrieren. Sehen Sie es gerendert
+  [hier](https://pages.gitlab.io/jupyterbook/intro.html).
 
-Now you have all the expertise required to start playing with GitLab pages. Feel free to
-[contact us](mailto:bio-it@embl.de) if you have any question or open an issue in the template projects to request for
-features or to raise issues. You are also welcomed to contribute to the development of pages templates, both the ones
-existing and new ones that may fit your use cases. Finally, check the next (bonus) chapter to know how to deal with
-errors in pipeline execution to be able to troubleshoot eventual CI/CD errors!
+Jetzt haben Sie das nötige Fachwissen, um mit GitLab-Seiten zu arbeiten. Wenn Sie Fragen
+haben, wenden Sie sich bitte an [contact us](mailto:bio-it@embl.de) oder öffnen Sie ein
+Issue in den Template-Projekten, um Funktionen anzufordern oder Probleme zu lösen. Sie
+sind auch herzlich eingeladen, zur Entwicklung von Seitenvorlagen beizutragen, sowohl zu
+den bestehenden als auch zu neuen, die für Ihre Anwendungsfälle geeignet sein könnten.
+Schauen Sie sich schließlich das nächste (Bonus-)Kapitel an, um zu erfahren, wie man mit
+Fehlern in der Pipeline-Ausführung umgeht, um eventuelle CI/CD-Fehler beheben zu können!
 
 {% include links.md %}
+
